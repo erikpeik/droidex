@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import type { DroidCard as DroidCardType } from '../data/droids'
 
 interface Props {
@@ -34,12 +35,18 @@ function initials(name: string): string {
   return parts.map((p) => p[0]).join('').slice(0, 3).toUpperCase()
 }
 
+function imgSrc(name: string, tier: string): string {
+  const safe = name.replace(/ /g, '_')
+  return `${import.meta.env.BASE_URL}droids/${safe}_${tier}.png`
+}
+
 export function DroidCard({ card, collected, onToggle, highlighted }: Props) {
   const { droid, tier, id } = card
   const rarityColor = RARITY_COLORS[droid.rarity]
   const typeConfig = TYPE_CONFIG[droid.type]
   const tierStyle = TIER_STYLES[tier]
   const isRainbow = tier === 'RAINBOW'
+  const [imgFailed, setImgFailed] = useState(false)
 
   return (
     <button
@@ -64,20 +71,30 @@ export function DroidCard({ card, collected, onToggle, highlighted }: Props) {
       {/* Rarity top stripe */}
       <div className="w-full h-1" style={{ backgroundColor: rarityColor }} />
 
-      {/* Type icon area */}
-      <div className={`w-full flex-1 flex items-center justify-center p-2 bg-gradient-to-b ${typeConfig.bg} min-h-[4rem]`}>
-        <div
-          className="w-12 h-12 flex items-center justify-center text-2xl font-bold"
-          style={{
-            clipPath: typeConfig.shape === '50%' ? undefined : typeConfig.shape,
-            borderRadius: typeConfig.shape === '50%' ? '50%' : undefined,
-            backgroundColor: rarityColor + '33',
-            border: `1px solid ${rarityColor}66`,
-            color: rarityColor,
-          }}
-        >
-          {initials(droid.name)}
-        </div>
+      {/* Droid image or fallback icon */}
+      <div className={`w-full flex-1 flex items-center justify-center bg-gradient-to-b ${typeConfig.bg} min-h-[4rem] overflow-hidden`}>
+        {!imgFailed ? (
+          <img
+            src={imgSrc(droid.name, tier)}
+            alt={droid.name}
+            onError={() => setImgFailed(true)}
+            className="w-full h-full object-cover"
+            draggable={false}
+          />
+        ) : (
+          <div
+            className="w-12 h-12 flex items-center justify-center text-2xl font-bold"
+            style={{
+              clipPath: typeConfig.shape === '50%' ? undefined : typeConfig.shape,
+              borderRadius: typeConfig.shape === '50%' ? '50%' : undefined,
+              backgroundColor: rarityColor + '33',
+              border: `1px solid ${rarityColor}66`,
+              color: rarityColor,
+            }}
+          >
+            {initials(droid.name)}
+          </div>
+        )}
       </div>
 
       {/* Name + meta */}
