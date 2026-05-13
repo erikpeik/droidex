@@ -148,6 +148,41 @@
   .login-glow-bg {
     background: radial-gradient(ellipse at 50% 40%, rgba(0, 229, 255, 0.06) 0%, transparent 70%);
   }
+
+  @keyframes tv-scan {
+    from { background-position: 0 0, 0 -60px; }
+    to   { background-position: 0 0, 0 110%; }
+  }
+
+  .tv-distortion {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 10;
+    border-radius: inherit;
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.18) 2px,
+        rgba(0, 0, 0, 0.18) 4px
+      ),
+      linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(255, 255, 255, 0.04) 50%,
+        transparent 100%
+      );
+    background-size: 100% 4px, 100% 60px;
+    transition: opacity 0.1s;
+  }
+
+  .droid-card:hover .tv-distortion {
+    opacity: 1;
+    animation: tv-scan 1s linear infinite;
+  }
 }
 
 /* Google Sign-In button — https://developers.google.com/identity/branding-guidelines */

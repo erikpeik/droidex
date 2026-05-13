@@ -64,7 +64,7 @@ export function DroidCard({ card, collected, onToggle, highlighted, rebirthLevel
       className={[
         'relative flex flex-col rounded-lg border-4 overflow-hidden',
         'transition-all duration-150 select-none cursor-pointer',
-        'bg-zinc-900 active:scale-95',
+        'bg-zinc-900 active:scale-95 droid-card',
         collected || highlighted ? 'hover:brightness-110' : 'opacity-40 hover:opacity-90',
         TIER_BORDER[tier],
         isRainbow ? 'rainbow-border-animated' : '',
@@ -75,7 +75,7 @@ export function DroidCard({ card, collected, onToggle, highlighted, rebirthLevel
       }}
     >
       {/* Droid image */}
-      <div className="w-full flex-1 min-h-[6rem] overflow-hidden bg-zinc-800">
+      <div className="relative w-full flex-1 min-h-[6rem] overflow-hidden bg-zinc-800">
         {!imgFailed ? (
           <img
             src={imgSrc(droid.name, tier)}
@@ -92,6 +92,7 @@ export function DroidCard({ card, collected, onToggle, highlighted, rebirthLevel
             <badge.Icon size={32} />
           </div>
         )}
+        <div className="tv-distortion" />
       </div>
 
       {/* Footer */}
@@ -123,7 +124,7 @@ export function DroidCard({ card, collected, onToggle, highlighted, rebirthLevel
 
       {/* Type icon — top right */}
       <div
-        className="absolute top-1.5 right-1.5 w-6 h-6 rounded-md flex items-center justify-center"
+        className="absolute top-1.5 right-1.5 z-20 w-6 h-6 rounded-md flex items-center justify-center"
         style={{ backgroundColor: badge.bg }}
       >
         <badge.Icon size={14} color="white" />
@@ -131,7 +132,7 @@ export function DroidCard({ card, collected, onToggle, highlighted, rebirthLevel
 
       {/* Collected checkmark — top left */}
       {collected && (
-        <div className="absolute top-1.5 left-1.5 w-5 h-5 rounded-full bg-cyan-400 flex items-center justify-center">
+        <div className="absolute top-1.5 left-1.5 z-20 w-5 h-5 rounded-full bg-cyan-400 flex items-center justify-center">
           <svg
             viewBox="0 0 10 10"
             className="w-3 h-3 text-black"
@@ -158,6 +159,7 @@ export function DroidCard({ card, collected, onToggle, highlighted, rebirthLevel
           </span>
         </div>
       )}
+
     </button>
   );
 }
