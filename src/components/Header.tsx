@@ -73,15 +73,11 @@ export function Header({ collected, rebirthLevel, onSignIn, onSignOut }: Props) 
         </button>
       )}
       {onSignOut && (
-        <button
-          type="button"
-          onClick={onSignOut}
-          className="shrink-0 text-[10px] font-bold tracking-widest uppercase
-                     text-zinc-500 hover:text-cyan-400 border border-zinc-700
-                     hover:border-cyan-500/50 rounded px-2.5 py-1
-                     transition-colors duration-150"
-        >
-          Sign Out
+        <button className="gsi-material-button shrink-0" type="button" onClick={onSignOut}>
+          <div className="gsi-material-button-state"></div>
+          <div className="gsi-material-button-content-wrapper">
+            <span className="gsi-material-button-contents">Sign out</span>
+          </div>
         </button>
       )}
     </header>
