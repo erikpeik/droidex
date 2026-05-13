@@ -64,15 +64,14 @@ export function DroidCard({ card, collected, onToggle, highlighted, rebirthLevel
       className={[
         'relative flex flex-col rounded-lg border-4 overflow-hidden',
         'transition-all duration-150 select-none cursor-pointer',
-        'bg-zinc-900 hover:brightness-110 active:scale-95',
+        'bg-zinc-900 active:scale-95',
+        collected || highlighted ? 'hover:brightness-110' : 'opacity-40 hover:opacity-90',
         TIER_BORDER[tier],
         isRainbow ? 'rainbow-border-animated' : '',
         ringClass,
       ].join(' ')}
       style={{
-        boxShadow: collected
-          ? '0 0 12px 2px rgba(0,229,255,0.45)'
-          : TIER_GLOW[tier] || undefined,
+        boxShadow: TIER_GLOW[tier] || undefined,
       }}
     >
       {/* Droid image */}
