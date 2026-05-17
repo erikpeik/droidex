@@ -73,12 +73,6 @@ export default function App() {
                   {/* Filter content: hidden on mobile until toggled, always visible on desktop */}
                   <div className={`${filtersOpen ? 'flex' : 'hidden'} lg:flex flex-col flex-1 lg:overflow-y-auto`}>
 
-                    {/* Search */}
-                    <div className="px-4 py-3 border-b border-zinc-800">
-                      <p className="text-[9px] font-bold tracking-widest text-zinc-500 mb-2">SEARCH</p>
-                      <SearchInput value={search} onChange={setSearch} />
-                    </div>
-
                     {/* Rarity */}
                     <div className="px-4 py-3 border-b border-zinc-800">
                       <p className="text-[9px] font-bold tracking-widest text-zinc-500 mb-2">RARITY</p>
@@ -100,17 +94,22 @@ export default function App() {
                 </aside>
 
                 {/* Droid grid — scrollable, fills remaining space */}
-                <div className="order-last lg:order-first flex-1 overflow-y-auto">
-                  <DroidGrid
-                    tier={tier}
-                    rarity={rarity}
-                    droidClass={droidClass}
-                    collectionStatus={collectionStatus}
-                    search={search}
-                    collected={collected}
-                    onToggle={toggle}
-                    highlightedIds={highlightedIds}
-                  />
+                <div className="order-last lg:order-first flex-1 flex flex-col min-h-0">
+                  <div className="px-3 py-2 border-b border-zinc-800 shrink-0">
+                    <SearchInput value={search} onChange={setSearch} />
+                  </div>
+                  <div className="flex-1 overflow-y-auto">
+                    <DroidGrid
+                      tier={tier}
+                      rarity={rarity}
+                      droidClass={droidClass}
+                      collectionStatus={collectionStatus}
+                      search={search}
+                      collected={collected}
+                      onToggle={toggle}
+                      highlightedIds={highlightedIds}
+                    />
+                  </div>
                 </div>
               </div>
 

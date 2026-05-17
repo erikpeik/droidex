@@ -81,7 +81,7 @@ export function RebirthsPage({ rebirthLevel, collected, onSetRebirth }: Props) {
             </div>
 
             {/* Droid cards */}
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-3 justify-center">
               {level.droids.map((d) => {
                 const have = collected.has(d.cardId)
                 return (

@@ -7,10 +7,11 @@ A web-based tracker for the **Fortnite Star Wars Droid Tycoon** game mode. Track
 ## Features
 
 - **Droid grid** — all 202 known droids across DEFAULT / GOLD / DIAMOND / RAINBOW tiers
-- **Rarity filter** — filter by COMMON, RARE, EPIC, LEGENDARY, or MYTHIC
+- **Search & filters** — search by name; filter by rarity, class (WORKER / ASTROMECH / BATTLE), and collection status
 - **Click to collect** — toggle droids as collected; cyan glow marks what you own
-- **Rebirth tracker** — shows credit cost and required droids for each rebirth level (0→20); highlights missing droids in the grid on hover
-- **Persistent state** — progress saves to localStorage; survives page refresh
+- **Rebirth tracker** — shows credit cost and required droids for each rebirth level (0→20); highlights missing droids in the grid
+- **Google sign-in** — sync your collection to Firestore across devices; guest progress migrates automatically on sign-in
+- **Persistent state** — guest progress saves to localStorage; signed-in progress syncs via Firestore in real time
 
 ## Data
 
@@ -34,18 +35,21 @@ Open <http://localhost:5173>
 
 ## Adding Droid Images
 
-Droid cards currently use styled placeholders (type-shaped icons with initials). To add real images, drop a PNG into `public/droids/` named after the droid ID:
+Drop a PNG into `public/droids/` named `<DROID_NAME>_<TIER>.png`:
 
 ```
 public/droids/MOUSE_DEFAULT.png
 public/droids/R2_RAINBOW.png
 ```
 
-Then update `DroidCard.tsx` to render an `<img>` when the file exists.
+The card renders the image automatically and falls back to the class icon if the file is missing.
 
 ## Tech Stack
 
 - React 18 + TypeScript
 - Vite
 - Tailwind CSS v3
-- localStorage (no backend)
+- React Router v7
+- Firebase (Auth + Firestore)
+- Lucide React (icons)
+- Firebase Hosting
