@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Wrench, Satellite, Crosshair, RefreshCw, type LucideIcon } from 'lucide-react';
+import { RefreshCw } from 'lucide-react';
 import type { DroidCard as DroidCardType } from '../data/droids';
 
 interface Props {
@@ -18,10 +18,10 @@ const RARITY_COLOR: Record<string, string> = {
   MYTHIC: '#ef4444',
 };
 
-const TYPE_BADGE: Record<string, { Icon: LucideIcon; bg: string }> = {
-  WORKER: { Icon: Wrench, bg: '#16a34a' },
-  ASTROMECH: { Icon: Satellite, bg: '#7c3aed' },
-  BATTLE: { Icon: Crosshair, bg: '#dc2626' },
+const TYPE_BADGE: Record<string, { img: string; bg: string }> = {
+  WORKER:    { img: `${import.meta.env.BASE_URL}img/worker.png`,    bg: '#16a34a' },
+  ASTROMECH: { img: `${import.meta.env.BASE_URL}img/astromech.png`, bg: '#7c3aed' },
+  BATTLE:    { img: `${import.meta.env.BASE_URL}img/battle.png`,    bg: '#dc2626' },
 };
 
 const TIER_BORDER: Record<string, string> = {
@@ -85,14 +85,18 @@ export function DroidCard({ card, collected, onToggle, highlighted, rebirthLevel
             draggable={false}
           />
         ) : (
-          <div
-            className="w-full h-full flex items-center justify-center"
-            style={{ color: rarityColor }}
-          >
-            <badge.Icon size={32} />
+          <div className="w-full h-full flex items-center justify-center">
+            <img src={badge.img} alt={droid.type} className="w-8 h-8 object-contain" />
           </div>
         )}
         <div className="tv-distortion" />
+        {droid.eventLocked && (
+          <div className="absolute bottom-0 left-0 right-0 flex justify-center pb-1">
+            <span className="text-red-400 text-[8px] font-bold tracking-widest uppercase bg-black/50 px-1.5 py-0.5 rounded">
+              event locked
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Footer */}
@@ -124,10 +128,9 @@ export function DroidCard({ card, collected, onToggle, highlighted, rebirthLevel
 
       {/* Type icon — top right */}
       <div
-        className="absolute top-1.5 right-1.5 z-20 w-6 h-6 rounded-md flex items-center justify-center"
-        style={{ backgroundColor: badge.bg }}
+        className="absolute top-1.5 right-1.5 z-20 w-6 h-6"
       >
-        <badge.Icon size={14} color="white" />
+        <img src={badge.img} alt={droid.type} className="w-full h-full object-contain" />
       </div>
 
       {/* Collected checkmark — top left */}
@@ -149,16 +152,6 @@ export function DroidCard({ card, collected, onToggle, highlighted, rebirthLevel
         </div>
       )}
 
-      {/* Event locked overlay */}
-      {droid.eventLocked && (
-        <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
-          <span className="text-red-400 text-[10px] font-bold text-center leading-tight px-1">
-            EVENT
-            <br />
-            LOCKED
-          </span>
-        </div>
-      )}
 
     </button>
   );
