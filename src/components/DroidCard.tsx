@@ -10,12 +10,12 @@ interface Props {
   rebirthLevels?: number[];
 }
 
-const RARITY_COLOR: Record<string, string> = {
-  COMMON: '#16a34a',
-  RARE: '#3b82f6',
-  EPIC: '#a855f7',
-  LEGENDARY: '#f59e0b',
-  MYTHIC: '#ef4444',
+const RARITY_CLASS: Record<string, string> = {
+  COMMON:    'text-green-600 bg-green-600/15 border border-green-600/40',
+  RARE:      'text-blue-500 bg-blue-500/15 border border-blue-500/40',
+  EPIC:      'text-purple-500 bg-purple-500/15 border border-purple-500/40',
+  LEGENDARY: 'text-amber-400 bg-amber-400/15 border border-amber-400/40',
+  MYTHIC:    'text-red-500 bg-red-500/15 border border-red-500/40',
 };
 
 const TYPE_BADGE: Record<string, { img: string; bg: string }> = {
@@ -45,7 +45,6 @@ function imgSrc(name: string, tier: string): string {
 
 export function DroidCard({ card, collected, onToggle, highlighted, rebirthLevels }: Props) {
   const { droid, tier, id } = card;
-  const rarityColor = RARITY_COLOR[droid.rarity];
   const badge = TYPE_BADGE[droid.type];
   const isRainbow = tier === 'RAINBOW';
   const [imgFailed, setImgFailed] = useState(false);
@@ -62,10 +61,9 @@ export function DroidCard({ card, collected, onToggle, highlighted, rebirthLevel
       onClick={() => onToggle(id)}
       title={`${droid.name} (${tier}) — click to toggle`}
       className={[
-        'relative flex flex-col rounded-lg border-4 overflow-hidden',
+        'relative flex flex-col border-4 overflow-hidden',
         'transition-all duration-150 select-none cursor-pointer',
-        'bg-zinc-900 active:scale-95 droid-card',
-        collected || highlighted ? 'hover:brightness-110' : 'opacity-40 hover:opacity-90',
+        'bg-zinc-900 active:scale-95 droid-card hover:brightness-110',
         TIER_BORDER[tier],
         isRainbow ? 'rainbow-border-animated' : '',
         ringClass,
@@ -89,6 +87,12 @@ export function DroidCard({ card, collected, onToggle, highlighted, rebirthLevel
             <img src={badge.img} alt={droid.type} className="w-8 h-8 object-contain" />
           </div>
         )}
+
+        {/* Uncollected placeholder overlay */}
+        {!collected && !highlighted && (
+          <div className="absolute inset-0 bg-black/65" />
+        )}
+
         <div className="tv-distortion" />
         {droid.eventLocked && (
           <div className="absolute bottom-0 left-0 right-0 flex justify-center pb-1">
@@ -106,12 +110,7 @@ export function DroidCard({ card, collected, onToggle, highlighted, rebirthLevel
         </p>
         <div className="flex items-center gap-1 flex-wrap mt-0.5">
           <span
-            className="text-[9px] font-bold px-1.5 py-px rounded-full uppercase tracking-wide inline-block"
-            style={{
-              color: rarityColor,
-              backgroundColor: rarityColor + '22',
-              border: `1px solid ${rarityColor}66`,
-            }}
+            className={`${RARITY_CLASS[droid.rarity]} text-[9px] font-bold px-1.5 py-px rounded-full uppercase tracking-wide inline-block`}
           >
             {droid.rarity}
           </span>
@@ -127,31 +126,22 @@ export function DroidCard({ card, collected, onToggle, highlighted, rebirthLevel
       </div>
 
       {/* Type icon — top right */}
-      <div
-        className="absolute top-1.5 right-1.5 z-20 w-6 h-6"
-      >
+      <div className="absolute top-1.5 right-1.5 z-20 w-6 h-6">
         <img src={badge.img} alt={droid.type} className="w-full h-full object-contain" />
       </div>
 
-      {/* Collected checkmark — top left */}
-      {collected && (
-        <div className="absolute top-1.5 left-1.5 z-20 w-5 h-5 rounded-full bg-cyan-400 flex items-center justify-center">
-          <svg
-            viewBox="0 0 10 10"
-            className="w-3 h-3 text-black"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-          >
-            <path
-              d="M1.5 5l2.5 2.5 4.5-4"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
+      {/* Collected checkbox — top left */}
+      <div className={`absolute top-1.5 left-1.5 z-20 w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${
+        collected
+          ? 'bg-cyan-400 border-cyan-400'
+          : 'bg-black/40 border-zinc-400'
+      }`}>
+        {collected && (
+          <svg viewBox="0 0 10 10" className="w-3 h-3" fill="none" stroke="black" strokeWidth="2.5">
+            <path d="M1.5 5l2.5 2.5 4.5-4" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-        </div>
-      )}
-
+        )}
+      </div>
 
     </button>
   );
