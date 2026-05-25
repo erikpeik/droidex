@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { RefreshCw } from 'lucide-react';
 import type { DroidCard as DroidCardType } from '../data/droids';
+import droidStats from '../data/droidStats.json';
 
 interface Props {
   card: DroidCardType;
@@ -8,6 +9,12 @@ interface Props {
   onToggle: (id: string) => void;
   highlighted?: boolean;
   rebirthLevels?: number[];
+}
+
+interface TierStats {
+  cost: string | null;
+  income: string | null;
+  value: string | null;
 }
 
 const RARITY_CLASS: Record<string, string> = {
@@ -43,11 +50,19 @@ function imgSrc(name: string, tier: string): string {
   return `${import.meta.env.BASE_URL}droids/${safe}_${tier}.png`;
 }
 
+function getStats(name: string, tier: string): TierStats | null {
+  const byName = (droidStats as Record<string, Record<string, TierStats>>)[name];
+  return byName?.[tier] ?? null;
+}
+
 export function DroidCard({ card, collected, onToggle, highlighted, rebirthLevels }: Props) {
   const { droid, tier, id } = card;
   const badge = TYPE_BADGE[droid.type];
   const isRainbow = tier === 'RAINBOW';
   const [imgFailed, setImgFailed] = useState(false);
+  const [hovered, setHovered] = useState(false);
+
+  const stats = getStats(droid.name, tier);
 
   const ringClass = highlighted
     ? 'ring-2 ring-yellow-400 ring-inset'
@@ -59,6 +74,8 @@ export function DroidCard({ card, collected, onToggle, highlighted, rebirthLevel
     <button
       type="button"
       onClick={() => onToggle(id)}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
       title={`${droid.name} (${tier}) — click to toggle`}
       className={[
         'relative flex flex-col border-4 overflow-hidden',
@@ -94,6 +111,37 @@ export function DroidCard({ card, collected, onToggle, highlighted, rebirthLevel
         )}
 
         <div className="tv-distortion" />
+
+        {/* Stats HUD — slides up on hover */}
+        {stats && (
+          <div
+            className={`absolute inset-x-0 bottom-0 z-30 transition-transform duration-200 ease-out ${hovered ? 'translate-y-0' : 'translate-y-full'}`}
+          >
+            <div className="bg-black/90 border-t border-zinc-700/80 px-2 py-1.5 backdrop-blur-sm">
+              <div className="grid grid-cols-3 gap-x-1 text-center">
+                <div>
+                  <p className="text-[7px] font-bold tracking-widest text-zinc-500 uppercase">COST</p>
+                  <p className="text-[9px] font-bold text-amber-400 leading-tight glow-amber-sm">
+                    {stats.cost ?? '—'}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-[7px] font-bold tracking-widest text-zinc-500 uppercase">INCOME</p>
+                  <p className="text-[9px] font-bold text-cyan-400 leading-tight glow-cyan-sm">
+                    {stats.income ?? '—'}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-[7px] font-bold tracking-widest text-zinc-500 uppercase">VALUE</p>
+                  <p className="text-[9px] font-bold text-emerald-400 leading-tight glow-emerald-sm">
+                    {stats.value ?? '—'}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {droid.eventLocked && (
           <div className="absolute bottom-0 left-0 right-0 flex justify-center pb-1">
             <span className="text-red-400 text-[8px] font-bold tracking-widest uppercase bg-black/50 px-1.5 py-0.5 rounded">
@@ -123,6 +171,21 @@ export function DroidCard({ card, collected, onToggle, highlighted, rebirthLevel
             </span>
           )}
         </div>
+
+        {/* HUD strip — cost | income always visible */}
+        {stats && (stats.cost !== null || stats.income !== null) && (
+          <div className="flex mt-1.5 border border-zinc-800 overflow-hidden">
+            <div className="flex-1 flex items-center gap-1 px-1.5 py-1 bg-zinc-950">
+              <span className="text-amber-500 text-[9px] leading-none">◎</span>
+              <span className="text-amber-400 text-[9px] font-bold leading-none glow-amber-sm">{stats.cost ?? '—'}</span>
+            </div>
+            <div className="w-px bg-zinc-800" />
+            <div className="flex-1 flex items-center gap-1 px-1.5 py-1 bg-zinc-950">
+              <span className="text-cyan-400 text-[9px] leading-none">⚡</span>
+              <span className="text-cyan-400 text-[9px] font-bold leading-none glow-cyan-sm">{stats.income ?? '—'}</span>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Type icon — top right */}
