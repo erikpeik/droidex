@@ -1,14 +1,16 @@
 import { Link, NavLink } from 'react-router-dom'
+import type { User } from 'firebase/auth'
 import { ALL_CARDS, TOTAL_DROIDS } from '../data/droids'
 
 interface Props {
   collected: Set<string>
   rebirthLevel: number
+  user?: User | null
   onSignIn?: () => void
   onSignOut?: () => void
 }
 
-export function Header({ collected, rebirthLevel, onSignIn, onSignOut }: Props) {
+export function Header({ collected, rebirthLevel, user, onSignIn, onSignOut }: Props) {
   const collectedCount = collected.size
   const knownTotal = ALL_CARDS.length
   const pct = Math.round((collectedCount / TOTAL_DROIDS) * 100)
@@ -97,13 +99,32 @@ export function Header({ collected, rebirthLevel, onSignIn, onSignOut }: Props) 
             </div>
           </button>
         )}
-        {onSignOut && (
-          <button className="gsi-material-button shrink-0" type="button" onClick={onSignOut}>
-            <div className="gsi-material-button-state"></div>
-            <div className="gsi-material-button-content-wrapper">
-              <span className="gsi-material-button-contents">Sign out</span>
-            </div>
-          </button>
+        {onSignOut && user && (
+          <div className="shrink-0 flex items-center gap-1.5">
+            {user.photoURL ? (
+              <img
+                src={user.photoURL}
+                alt={user.displayName ?? 'User'}
+                className="w-8 h-8 rounded-full border border-zinc-700"
+                referrerPolicy="no-referrer"
+              />
+            ) : (
+              <div className="w-8 h-8 rounded-full bg-zinc-700 flex items-center justify-center text-zinc-300 text-xs font-bold border border-zinc-600">
+                {(user.displayName ?? user.email ?? '?')[0].toUpperCase()}
+              </div>
+            )}
+            <button
+              type="button"
+              onClick={onSignOut}
+              title="Sign out"
+              className="text-zinc-500 hover:text-zinc-200 transition-colors p-1 rounded"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+                <path fillRule="evenodd" d="M3 4.25A2.25 2.25 0 0 1 5.25 2h5.5A2.25 2.25 0 0 1 13 4.25v2a.75.75 0 0 1-1.5 0v-2a.75.75 0 0 0-.75-.75h-5.5a.75.75 0 0 0-.75.75v11.5c0 .414.336.75.75.75h5.5a.75.75 0 0 0 .75-.75v-2a.75.75 0 0 1 1.5 0v2A2.25 2.25 0 0 1 10.75 18h-5.5A2.25 2.25 0 0 1 3 15.75V4.25Z" clipRule="evenodd" />
+                <path fillRule="evenodd" d="M19 10a.75.75 0 0 0-.75-.75H8.704l1.048-1.047a.75.75 0 1 0-1.06-1.06l-2.25 2.25a.75.75 0 0 0 0 1.06l2.25 2.25a.75.75 0 1 0 1.06-1.06L8.704 10.75H18.25A.75.75 0 0 0 19 10Z" clipRule="evenodd" />
+              </svg>
+            </button>
+          </div>
         )}
     </header>
   )

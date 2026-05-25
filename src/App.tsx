@@ -43,6 +43,7 @@ export default function App() {
       <Header
         collected={collected}
         rebirthLevel={rebirthLevel}
+        user={user}
         onSignIn={user ? undefined : signInWithGoogle}
         onSignOut={user ? signOut : undefined}
       />
