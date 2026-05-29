@@ -49,23 +49,23 @@ ALL_DROIDS = [
     'BDX EXPLORER', 'ARG', 'SENATE HOVERCAM', 'BU-4D',
     'BAL-CORE', 'ROLL-R', '2BB', 'A-LT', 'R4',
     'R9', 'B1 SECURITY', 'NAV-EX', 'VECT-ARM', 'HOV-R',
-    # Epic (17)
+    # Epic (18)
     'GROUNDMECH', 'LO', 'AMP WALKER', 'SEN-TRI', 'OPTI-POD',
-    'BB', 'R2', 'R6', 'TRAK-R', 'ORB-WALKER',
+    'BB', 'R2', 'R6', 'TRAK-R', 'ORB-WALKER', 'GUNRUNNER',
     'UTIL-TEC', 'B1 HEAVY', 'B2 SUPER', 'B2 HEAVY', 'STRIKE-ORB',
     'HAUL-R', 'LNG-SHOT',
     # Legendary (8)
     'PROTO-ROLLER', 'MECHA-DROID', 'MONO-WALKER', 'BB9', 'R7',
     'B2-RP', 'CYCLO-GRAV', 'OPTI-STRIKE',
-    # Mythic (2) — DEFAULT tier only
-    'BB8', 'MISTER BONES',
+    # Mythic (3) — DEFAULT tier only
+    'BB8', 'MISTER BONES', 'IG-11 MARSHAL',
 ]
 
 DROIDS_BY_TIER = {
-    'DEFAULT': ALL_DROIDS,       # 52
-    'GOLD':    ALL_DROIDS[:50],  # 50
-    'DIAMOND': ALL_DROIDS[:50],  # 50
-    'RAINBOW': ALL_DROIDS[:50],  # 50
+    'DEFAULT': ALL_DROIDS,       # 54
+    'GOLD':    ALL_DROIDS[:51],  # 51
+    'DIAMOND': ALL_DROIDS[:51],  # 51
+    'RAINBOW': ALL_DROIDS[:51],  # 51
 }
 
 PAGES = {
@@ -109,7 +109,7 @@ def extract_all():
         droid_idx = 0
 
         for page_num, filename in enumerate(page_files):
-            path = f'droidex_images/{filename}'
+            path = f'scripts/droidex_images/{filename}'
             if not os.path.exists(path):
                 print(f'  SKIP: {path}')
                 continue
@@ -136,7 +136,7 @@ def debug_overlay():
     """Draw crop boxes on default_page1.png and save a 1920x1080 overlay."""
     from PIL import ImageDraw
 
-    img = Image.open('droidex_images/default_page1.png').copy()
+    img = Image.open('scripts/droidex_images/default_page1.png').copy()
     draw = ImageDraw.Draw(img)
 
     for row in range(len(ROW_YS)):
@@ -149,6 +149,8 @@ def debug_overlay():
             cx = COL_LEFT + col * CELL_W + CELL_W // 2
             draw.ellipse([cx - 18, y - 18, cx + 18, y + 18],
                          outline=(0, 255, 0), width=4)
+
+    os.makedirs('scripts/debug_crops', exist_ok=True)
 
     img.resize((1920, 1080)).save('scripts/debug_crops/grid_overlay.png')
     print('Overlay saved -> scripts/debug_crops/grid_overlay.png')
