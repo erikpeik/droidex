@@ -51,7 +51,7 @@ ALL_DROIDS = [
     'R9', 'B1 SECURITY', 'NAV-EX', 'VECT-ARM', 'HOV-R',
     # Epic (18)
     'GROUNDMECH', 'LO', 'AMP WALKER', 'SEN-TRI', 'OPTI-POD',
-    'BB', 'R2', 'R6', 'TRAK-R', 'ORB-WALKER', 'GUNRUNNER',
+    'GUNRUNNER', 'BB', 'R2', 'R6', 'TRAK-R', 'ORB-WALKER',
     'UTIL-TEC', 'B1 HEAVY', 'B2 SUPER', 'B2 HEAVY', 'STRIKE-ORB',
     'HAUL-R', 'LNG-SHOT',
     # Legendary (8)
