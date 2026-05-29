@@ -6,7 +6,7 @@
     "RAINBOW": { "cost": "15.20k", "income": "16/s", "value": "10.64k" }
   },
   "PIT": {
-    "DEFAULT": { "cost": "1.1k", "income": "4/s", "value": "770" },
+    "DEFAULT": { "cost": "1.1k", "income": "2/s", "value": "770" },
     "GOLD": { "cost": "4.4k", "income": "4/s", "value": "3.08k" },
     "DIAMOND": { "cost": "8.8k", "income": "8/s", "value": "6.16k" },
     "RAINBOW": { "cost": "17.60k", "income": "16/s", "value": "12.32k" }
@@ -209,6 +209,12 @@
     "DIAMOND": { "cost": "12m", "income": "720/s", "value": "8.40m" },
     "RAINBOW": { "cost": "24m", "income": "1.44k/s", "value": "16.80m" }
   },
+  "GUNRUNNER": {
+    "DEFAULT": { "cost": "6.30m", "income": "660/s", "value": "4.41m" },
+    "GOLD": { "cost": "25.20m", "income": "1.32k/s", "value": "17.64m" },
+    "DIAMOND": { "cost": "50.40m", "income": "2.64k/s", "value": "35.28m" },
+    "RAINBOW": { "cost": "100.80m", "income": "5.28k/s", "value": "70.56m" }
+  },
   "UTIL-TEC": {
     "DEFAULT": { "cost": "1.80m", "income": "210/s", "value": "1.26m" },
     "GOLD": { "cost": "7.20m", "income": "420/s", "value": "5.04m" },
@@ -264,10 +270,10 @@
     "RAINBOW": { "cost": "464m", "income": "9.95k/s", "value": "324.80m" }
   },
   "MONO-WALKER": {
-    "DEFAULT": { "cost": "26m", "income": "1.50k/s", "value": "18.20m" },
-    "GOLD": { "cost": "104m", "income": "3.00k/s", "value": "72.80m" },
-    "DIAMOND": { "cost": "208m", "income": "6.00k/s", "value": "145.60m" },
-    "RAINBOW": { "cost": "416m", "income": "12.00k/s", "value": "291.20m" }
+    "DEFAULT": { "cost": "37m", "income": "1.50k/s", "value": "25.90m" },
+    "GOLD": { "cost": "148m", "income": "3.00k/s", "value": "103.60m" },
+    "DIAMOND": { "cost": "296m", "income": "6.00k/s", "value": "207.20m" },
+    "RAINBOW": { "cost": "592m", "income": "12.00k/s", "value": "414.40m" }
   },
   "BB9": {
     "DEFAULT": { "cost": "28m", "income": "1.30k/s", "value": "19.60m" },
@@ -279,7 +285,7 @@
     "DEFAULT": { "cost": "37m", "income": "1.50k/s", "value": "25.90m" },
     "GOLD": { "cost": "148m", "income": "3.00k/s", "value": "103.60m" },
     "DIAMOND": { "cost": "296m", "income": "6.00k/s", "value": "207.20m" },
-    "RAINBOW": { "cost": "590m", "income": "12.00k/s", "value": "413.00m" }
+    "RAINBOW": { "cost": "592m", "income": "12.00k/s", "value": "414.40m" }
   },
   "B2-RP": {
     "DEFAULT": { "cost": "31m", "income": "1.30k/s", "value": "21.70m" },
@@ -303,6 +309,9 @@
     "DEFAULT": { "cost": null, "income": "5%/s", "value": null }
   },
   "MISTER BONES": {
-    "DEFAULT": { "cost": null, "income": null, "value": null }
+    "DEFAULT": { "cost": null, "income": "5%/s", "value": null }
+  },
+  "IG-11 MARSHAL": {
+    "DEFAULT": { "cost": null, "income": "5%/s", "value": null }
   }
 }
