@@ -225,7 +225,7 @@
     "DEFAULT": { "cost": "6.00m", "income": "630/s", "value": "4.20m" },
     "GOLD": { "cost": "24m", "income": "1.26k/s", "value": "16.80m" },
     "DIAMOND": { "cost": "48m", "income": "2.52k/s", "value": "33.60m" },
-    "RAINBOW": { "cost": "96m", "income": "5.04k/s", "value": "67.20m" }
+    "RAINBOW": { "cost": "96m", "income": "4.80k/s", "value": "67.20m" }
   },
   "B2 SUPER": {
     "DEFAULT": { "cost": "3.90m", "income": "420/s", "value": "2.73m" },
