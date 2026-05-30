@@ -20,7 +20,7 @@ import os
 
 # ─── Fixed grid layout (3840 x 2160) ─────────────────────────────────────────
 
-COL_LEFT = 335   # x of the LEFT EDGE of the first column
+COL_LEFT = 515   # x of the LEFT EDGE of the first column
 # (rarity dots sit 50 px inside each cell at x=391,675,…)
 CELL_W = 285   # cell width  = spacing between adjacent dot centres
 
@@ -66,6 +66,7 @@ DROIDS_BY_TIER = {
     'GOLD':    ALL_DROIDS[:51],  # 51
     'DIAMOND': ALL_DROIDS[:51],  # 51
     'RAINBOW': ALL_DROIDS[:51],  # 51
+    'BESKAR': ALL_DROIDS[:51],  # 51
 }
 
 PAGES = {
@@ -73,6 +74,7 @@ PAGES = {
     'GOLD':    ['gold_page1.png',     'gold_page2.png',     'gold_page3.png'],
     'DIAMOND': ['diamond_page1.png',  'diamond_page2.png',  'diamond_page3.png'],
     'RAINBOW': ['rainbow_page1.png',  'rainbow_page2.png',  'rainbow_page3.png'],
+    'BESKAR': ['beskar_page1.png',  'beskar_page2.png',  'beskar_page3.png'],
 }
 
 # ─── Cropping ─────────────────────────────────────────────────────────────────
@@ -100,12 +102,14 @@ def cell_bounds(row: int, col: int) -> tuple[int, int, int, int]:
 
 # ─── Main routines ────────────────────────────────────────────────────────────
 
-def extract_all():
+def extract_all(tier=None):
     os.makedirs('public/droids', exist_ok=True)
     total = 0
 
-    for tier, page_files in PAGES.items():
-        droids = DROIDS_BY_TIER[tier]
+    pages = {tier: PAGES[tier]} if tier else PAGES
+
+    for t, page_files in pages.items():
+        droids = DROIDS_BY_TIER[t]
         droid_idx = 0
 
         for page_num, filename in enumerate(page_files):
@@ -122,21 +126,22 @@ def extract_all():
                 row, col = divmod(i, COLS)
                 thumb = img.crop(cell_bounds(row, col))
                 name = droids[droid_idx].replace(' ', '_')
-                thumb.save(f'public/droids/{name}_{tier}.png')
+                thumb.save(f'public/droids/{name}_{t}.png')
                 total += 1
                 droid_idx += 1
 
             last = droids[droid_idx - 1] if droid_idx else '?'
-            print(f'  {tier} p{page_num + 1}: {count} droids (to {last})')
+            print(f'  {t} p{page_num + 1}: {count} droids (to {last})')
 
     print(f'\nDone -- {total} thumbnails -> public/droids/')
 
 
-def debug_overlay():
-    """Draw crop boxes on default_page1.png and save a 1920x1080 overlay."""
+def debug_overlay(tier='DEFAULT'):
+    """Draw crop boxes on a page1 screenshot and save a 1920x1080 overlay."""
     from PIL import ImageDraw
 
-    img = Image.open('scripts/droidex_images/default_page1.png').copy()
+    page1 = PAGES[tier][0]
+    img = Image.open(f'scripts/droidex_images/{page1}').copy()
     draw = ImageDraw.Draw(img)
 
     for row in range(len(ROW_YS)):
@@ -152,14 +157,19 @@ def debug_overlay():
 
     os.makedirs('scripts/debug_crops', exist_ok=True)
 
-    img.resize((1920, 1080)).save('scripts/debug_crops/grid_overlay.png')
-    print('Overlay saved -> scripts/debug_crops/grid_overlay.png')
+    out = f'scripts/debug_crops/grid_overlay_{tier.lower()}.png'
+    img.resize((1920, 1080)).save(out)
+    print(f'Overlay saved -> {out}')
     print(f'COL_LEFT={COL_LEFT}  CELL_W={CELL_W}  ROW_YS={ROW_YS}')
 
 
 if __name__ == '__main__':
     import sys
+    tier = None
+    if '--tier' in sys.argv:
+        idx = sys.argv.index('--tier')
+        tier = sys.argv[idx + 1].upper()
     if '--debug' in sys.argv:
-        debug_overlay()
+        debug_overlay(tier=tier or 'DEFAULT')
     else:
-        extract_all()
+        extract_all(tier=tier)
