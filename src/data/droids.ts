@@ -1,6 +1,6 @@
 export type Rarity = 'COMMON' | 'RARE' | 'EPIC' | 'LEGENDARY' | 'MYTHIC';
 export type DroidType = 'WORKER' | 'ASTROMECH' | 'BATTLE';
-export type Tier = 'DEFAULT' | 'GOLD' | 'DIAMOND' | 'RAINBOW';
+export type Tier = 'DEFAULT' | 'GOLD' | 'DIAMOND' | 'RAINBOW' | 'BESKAR';
 export type TierOrAll = Tier | 'ALL';
 
 export interface Droid {
@@ -17,7 +17,7 @@ export interface DroidCard {
   tier: Tier;
 }
 
-const ALL_TIERS: Tier[] = ['DEFAULT', 'GOLD', 'DIAMOND', 'RAINBOW'];
+const ALL_TIERS: Tier[] = ['DEFAULT', 'GOLD', 'DIAMOND', 'RAINBOW', 'BESKAR'];
 const DEFAULT_ONLY: Tier[] = ['DEFAULT'];
 
 export const DROIDS: Droid[] = [
@@ -146,4 +146,10 @@ export const RARITY_ORDER: Rarity[] = [
   'LEGENDARY',
   'MYTHIC',
 ];
-export const TIER_ORDER: Tier[] = ['DEFAULT', 'GOLD', 'DIAMOND', 'RAINBOW'];
+export const TIER_ORDER: Tier[] = [
+  'DEFAULT',
+  'GOLD',
+  'DIAMOND',
+  'RAINBOW',
+  'BESKAR',
+];
