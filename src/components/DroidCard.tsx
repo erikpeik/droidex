@@ -18,17 +18,20 @@ interface TierStats {
 }
 
 const RARITY_CLASS: Record<string, string> = {
-  COMMON:    'text-green-600 bg-green-600/15 border border-green-600/40',
-  RARE:      'text-blue-500 bg-blue-500/15 border border-blue-500/40',
-  EPIC:      'text-purple-500 bg-purple-500/15 border border-purple-500/40',
+  COMMON: 'text-green-600 bg-green-600/15 border border-green-600/40',
+  RARE: 'text-blue-500 bg-blue-500/15 border border-blue-500/40',
+  EPIC: 'text-purple-500 bg-purple-500/15 border border-purple-500/40',
   LEGENDARY: 'text-amber-400 bg-amber-400/15 border border-amber-400/40',
-  MYTHIC:    'text-red-500 bg-red-500/15 border border-red-500/40',
+  MYTHIC: 'text-red-500 bg-red-500/15 border border-red-500/40',
 };
 
 const TYPE_BADGE: Record<string, { img: string; bg: string }> = {
-  WORKER:    { img: `${import.meta.env.BASE_URL}img/worker.png`,    bg: '#16a34a' },
-  ASTROMECH: { img: `${import.meta.env.BASE_URL}img/astromech.png`, bg: '#7c3aed' },
-  BATTLE:    { img: `${import.meta.env.BASE_URL}img/battle.png`,    bg: '#dc2626' },
+  WORKER: { img: `${import.meta.env.BASE_URL}img/worker.png`, bg: '#16a34a' },
+  ASTROMECH: {
+    img: `${import.meta.env.BASE_URL}img/astromech.png`,
+    bg: '#7c3aed',
+  },
+  BATTLE: { img: `${import.meta.env.BASE_URL}img/battle.png`, bg: '#dc2626' },
 };
 
 const TIER_BORDER: Record<string, string> = {
@@ -51,11 +54,19 @@ function imgSrc(name: string, tier: string): string {
 }
 
 function getStats(name: string, tier: string): TierStats | null {
-  const byName = (droidStats as Record<string, Record<string, TierStats>>)[name];
+  const byName = (droidStats as Record<string, Record<string, TierStats>>)[
+    name
+  ];
   return byName?.[tier] ?? null;
 }
 
-export function DroidCard({ card, collected, onToggle, highlighted, rebirthLevels }: Props) {
+export function DroidCard({
+  card,
+  collected,
+  onToggle,
+  highlighted,
+  rebirthLevels,
+}: Props) {
   const { droid, tier, id } = card;
   const badge = TYPE_BADGE[droid.type];
   const isRainbow = tier === 'RAINBOW';
@@ -101,7 +112,11 @@ export function DroidCard({ card, collected, onToggle, highlighted, rebirthLevel
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center">
-            <img src={badge.img} alt={droid.type} className="w-8 h-8 object-contain" />
+            <img
+              src={badge.img}
+              alt={droid.type}
+              className="w-8 h-8 object-contain"
+            />
           </div>
         )}
 
@@ -120,19 +135,25 @@ export function DroidCard({ card, collected, onToggle, highlighted, rebirthLevel
             <div className="bg-black/90 border-t border-zinc-700/80 px-2 py-1.5 backdrop-blur-sm">
               <div className="grid grid-cols-3 gap-x-1 text-center">
                 <div>
-                  <p className="text-[7px] font-bold tracking-widest text-zinc-500 uppercase">COST</p>
+                  <p className="text-[7px] font-bold tracking-widest text-zinc-500 uppercase">
+                    COST
+                  </p>
                   <p className="text-[9px] font-bold text-amber-400 leading-tight glow-amber-sm">
                     {stats.cost ?? '—'}
                   </p>
                 </div>
                 <div>
-                  <p className="text-[7px] font-bold tracking-widest text-zinc-500 uppercase">INCOME</p>
+                  <p className="text-[7px] font-bold tracking-widest text-zinc-500 uppercase">
+                    INCOME
+                  </p>
                   <p className="text-[9px] font-bold text-cyan-400 leading-tight glow-cyan-sm">
                     {stats.income ?? '—'}
                   </p>
                 </div>
                 <div>
-                  <p className="text-[7px] font-bold tracking-widest text-zinc-500 uppercase">VALUE</p>
+                  <p className="text-[7px] font-bold tracking-widest text-zinc-500 uppercase">
+                    VALUE
+                  </p>
                   <p className="text-[9px] font-bold text-emerald-400 leading-tight glow-emerald-sm">
                     {stats.value ?? '—'}
                   </p>
@@ -167,22 +188,30 @@ export function DroidCard({ card, collected, onToggle, highlighted, rebirthLevel
               className="text-[9px] font-bold px-1.5 py-px rounded-full uppercase tracking-wide inline-block text-orange-400 bg-orange-500/15 border border-orange-500/40"
               title={`Required for rebirth${rebirthLevels.length > 1 ? 's' : ''} ${rebirthLevels.join(', ')}`}
             >
-              <RefreshCw size={8} className="inline-block mr-0.5 align-middle" />{rebirthLevels.join('·')}
+              <RefreshCw
+                size={8}
+                className="inline-block mr-0.5 align-middle"
+              />
+              {rebirthLevels.join('·')}
             </span>
           )}
         </div>
 
         {/* HUD strip — cost | income always visible */}
         {stats && (stats.cost !== null || stats.income !== null) && (
-          <div className="flex mt-1.5 border border-zinc-800 overflow-hidden">
-            <div className="flex-1 flex items-center gap-1 px-1.5 py-1 bg-zinc-950">
+          <div className="flex mt-1.5 border border-zinc-800">
+            <div className="flex-1 flex items-center justify-center gap-0.5 px-1 py-1 bg-zinc-950">
               <span className="text-amber-500 text-[9px] leading-none">◎</span>
-              <span className="text-amber-400 text-[9px] font-bold leading-none glow-amber-sm">{stats.cost ?? '—'}</span>
+              <span className="text-amber-400 text-[9px] font-bold leading-none glow-amber-sm whitespace-nowrap">
+                {stats.cost ?? '—'}
+              </span>
             </div>
             <div className="w-px bg-zinc-800" />
-            <div className="flex-1 flex items-center gap-1 px-1.5 py-1 bg-zinc-950">
+            <div className="flex-1 flex items-center justify-center gap-0.5 px-1 py-1 bg-zinc-950">
               <span className="text-cyan-400 text-[9px] leading-none">⚡</span>
-              <span className="text-cyan-400 text-[9px] font-bold leading-none glow-cyan-sm">{stats.income ?? '—'}</span>
+              <span className="text-cyan-400 text-[9px] font-bold leading-none glow-cyan-sm whitespace-nowrap">
+                {stats.income ?? '—'}
+              </span>
             </div>
           </div>
         )}
@@ -190,22 +219,37 @@ export function DroidCard({ card, collected, onToggle, highlighted, rebirthLevel
 
       {/* Type icon — top right */}
       <div className="absolute top-1.5 right-1.5 z-20 w-6 h-6">
-        <img src={badge.img} alt={droid.type} className="w-full h-full object-contain" />
+        <img
+          src={badge.img}
+          alt={droid.type}
+          className="w-full h-full object-contain"
+        />
       </div>
 
       {/* Collected checkbox — top left */}
-      <div className={`absolute top-1.5 left-1.5 z-20 w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${
-        collected
-          ? 'bg-cyan-400 border-cyan-400'
-          : 'bg-black/40 border-zinc-400'
-      }`}>
+      <div
+        className={`absolute top-1.5 left-1.5 z-20 w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${
+          collected
+            ? 'bg-cyan-400 border-cyan-400'
+            : 'bg-black/40 border-zinc-400'
+        }`}
+      >
         {collected && (
-          <svg viewBox="0 0 10 10" className="w-3 h-3" fill="none" stroke="black" strokeWidth="2.5">
-            <path d="M1.5 5l2.5 2.5 4.5-4" strokeLinecap="round" strokeLinejoin="round" />
+          <svg
+            viewBox="0 0 10 10"
+            className="w-3 h-3"
+            fill="none"
+            stroke="black"
+            strokeWidth="2.5"
+          >
+            <path
+              d="M1.5 5l2.5 2.5 4.5-4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         )}
       </div>
-
     </button>
   );
 }
