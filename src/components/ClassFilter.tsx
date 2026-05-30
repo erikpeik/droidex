@@ -8,10 +8,10 @@ interface Props {
 }
 
 const OPTIONS: { value: DroidTypeOrAll; label: string; color: string }[] = [
-  { value: 'ALL',       label: 'ALL',       color: '#6b7280' },
-  { value: 'WORKER',    label: 'WORKER',    color: '#16a34a' },
+  { value: 'ALL', label: 'ALL', color: '#6b7280' },
+  { value: 'WORKER', label: 'WORKER', color: '#16a34a' },
   { value: 'ASTROMECH', label: 'ASTROMECH', color: '#7c3aed' },
-  { value: 'BATTLE',    label: 'BATTLE',    color: '#dc2626' },
+  { value: 'BATTLE', label: 'BATTLE', color: '#dc2626' },
 ];
 
 export function ClassFilter({ active, onChange }: Props) {
@@ -24,7 +24,7 @@ export function ClassFilter({ active, onChange }: Props) {
             key={opt.value}
             type="button"
             onClick={() => onChange(opt.value)}
-            className="px-2.5 py-0.5 text-[10px] font-bold tracking-widest rounded-full border transition-all duration-100"
+            className="px-2.5 py-1 sm:py-0.5 text-xs sm:text-[10px] font-bold tracking-widest rounded-full border transition-all duration-100"
             style={{
               borderColor: opt.color,
               color: isActive ? '#000' : opt.color,
