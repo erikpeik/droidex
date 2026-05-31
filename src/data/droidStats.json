@@ -213,7 +213,7 @@
     "GOLD": { "cost": "13.20m", "income": "720/s", "value": "9.24m" },
     "DIAMOND": { "cost": "26.40m", "income": "1.44k/s", "value": "18.48m" },
     "RAINBOW": { "cost": "52.80m", "income": "2.88k/s", "value": "36.96m" },
-    "BESKAR": { "cost": "13.20b", "income": "12.24k/s", "value": "9.24b" }
+    "BESKAR": { "cost": "412.50m", "income": "12.24k/s", "value": "288.75m" }
   },
   "R6": {
     "DEFAULT": { "cost": "2.70m", "income": "300/s", "value": "1.89m" },
