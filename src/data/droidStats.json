@@ -263,7 +263,8 @@
     "DEFAULT": { "cost": "5.10m", "income": "540/s", "value": "3.57m" },
     "GOLD": { "cost": "20.40m", "income": "1.08k/s", "value": "14.28m" },
     "DIAMOND": { "cost": "40.80m", "income": "2.16k/s", "value": "28.56m" },
-    "RAINBOW": { "cost": "81.60m", "income": "4.32k/s", "value": "57.12m" }
+    "RAINBOW": { "cost": "81.60m", "income": "4.32k/s", "value": "57.12m" },
+    "BESKAR": { "cost": "637.50m", "income": "18.36k/s", "value": "446.25m" }
   },
   "HAUL-R": {
     "DEFAULT": { "cost": "2.40m", "income": "270/s", "value": "1.68m" },
@@ -281,7 +282,8 @@
     "DEFAULT": { "cost": "22m", "income": "972/s", "value": "15.40m" },
     "GOLD": { "cost": "88m", "income": "1.94k/s", "value": "61.60m" },
     "DIAMOND": { "cost": "176m", "income": "3.89k/s", "value": "123.20m" },
-    "RAINBOW": { "cost": "352m", "income": "7.78k/s", "value": "246.40m" }
+    "RAINBOW": { "cost": "352m", "income": "7.78k/s", "value": "246.40m" },
+    "BESKAR": { "cost": "8.80b", "income": "23.33k/s", "value": "6.16b" }
   },
   "MECHA-DROID": {
     "DEFAULT": { "cost": "29m", "income": "1.24k/s", "value": "20.30m" },
@@ -293,19 +295,22 @@
     "DEFAULT": { "cost": "37m", "income": "1.50k/s", "value": "25.90m" },
     "GOLD": { "cost": "148m", "income": "3.00k/s", "value": "103.60m" },
     "DIAMOND": { "cost": "296m", "income": "6.00k/s", "value": "207.20m" },
-    "RAINBOW": { "cost": "592m", "income": "12.00k/s", "value": "414.40m" }
+    "RAINBOW": { "cost": "592m", "income": "12.00k/s", "value": "414.40m" },
+    "BESKAR": { "cost": null, "income": "36.00k/s", "value": null }
   },
   "BB9": {
     "DEFAULT": { "cost": "28m", "income": "1.30k/s", "value": "19.60m" },
     "GOLD": { "cost": "112m", "income": "2.60k/s", "value": "78.40m" },
     "DIAMOND": { "cost": "224m", "income": "5.20k/s", "value": "156.80m" },
-    "RAINBOW": { "cost": "448m", "income": "10.40k/s", "value": "313.60m" }
+    "RAINBOW": { "cost": "448m", "income": "10.40k/s", "value": "313.60m" },
+    "BESKAR": { "cost": null, "income": "31.20k/s", "value": null }
   },
   "R7": {
     "DEFAULT": { "cost": "37m", "income": "1.50k/s", "value": "25.90m" },
     "GOLD": { "cost": "148m", "income": "3.00k/s", "value": "103.60m" },
     "DIAMOND": { "cost": "296m", "income": "6.00k/s", "value": "207.20m" },
-    "RAINBOW": { "cost": "592m", "income": "12.00k/s", "value": "414.40m" }
+    "RAINBOW": { "cost": "592m", "income": "12.00k/s", "value": "414.40m" },
+    "BESKAR": { "cost": null, "income": "36.00k/s", "value": null }
   },
   "B2-RP": {
     "DEFAULT": { "cost": "31m", "income": "1.30k/s", "value": "21.70m" },
@@ -323,7 +328,8 @@
     "DEFAULT": { "cost": "37m", "income": "1.50k/s", "value": "25.90m" },
     "GOLD": { "cost": "148m", "income": "3.00k/s", "value": "103.60m" },
     "DIAMOND": { "cost": "296m", "income": "6.00k/s", "value": "207.20m" },
-    "RAINBOW": { "cost": "592m", "income": "12.00k/s", "value": "414.40m" }
+    "RAINBOW": { "cost": "592m", "income": "12.00k/s", "value": "414.40m" },
+    "BESKAR": { "cost": null, "income": "36.00k/s", "value": null }
   },
   "BB8": {
     "DEFAULT": { "cost": null, "income": "5%/s", "value": null }
