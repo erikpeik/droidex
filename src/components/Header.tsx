@@ -1,6 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
 import type { User } from 'firebase/auth';
-import { ALL_CARDS, TOTAL_DROIDS } from '../data/droids';
+import { TOTAL_DROIDS } from '../data/droids';
 
 interface Props {
   collected: Set<string>;
@@ -18,7 +18,6 @@ export function Header({
   onSignOut,
 }: Props) {
   const collectedCount = collected.size;
-  const knownTotal = ALL_CARDS.length;
   const pct = Math.round((collectedCount / TOTAL_DROIDS) * 100);
 
   return (
