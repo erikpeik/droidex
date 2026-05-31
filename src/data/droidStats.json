@@ -245,7 +245,8 @@
     "DEFAULT": { "cost": "1.80m", "income": "210/s", "value": "1.26m" },
     "GOLD": { "cost": "7.20m", "income": "420/s", "value": "5.04m" },
     "DIAMOND": { "cost": "14.40m", "income": "840/s", "value": "10.08m" },
-    "RAINBOW": { "cost": "28.80m", "income": "1.68k/s", "value": "20.16m" }
+    "RAINBOW": { "cost": "28.80m", "income": "1.68k/s", "value": "20.16m" },
+    "BESKAR": { "cost": "225m", "income": "7.14k/s", "value": "157.5m" }
   },
   "B1 HEAVY": {
     "DEFAULT": { "cost": "6.00m", "income": "630/s", "value": "4.20m" },
