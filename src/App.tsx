@@ -22,7 +22,7 @@ export default function App() {
   const { collected, toggle, rebirthLevel, setRebirthLevel } = useTracker(
     user?.uid ?? null,
   );
-  const [tier, setTier] = useState<TierOrAll>('DEFAULT');
+  const [tier, setTier] = useState<TierOrAll>('ALL');
   const [rarity, setRarity] = useState<RarityOrAll>('ALL');
   const [droidClass, setDroidClass] = useState<DroidTypeOrAll>('ALL');
   const [collectionStatus, setCollectionStatus] =

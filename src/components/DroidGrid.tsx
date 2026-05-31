@@ -65,7 +65,7 @@ export function DroidGrid({
     for (const level of REBIRTH_LEVELS) {
       for (const d of level.droids) {
         if (!map[d.cardId]) map[d.cardId] = [];
-        map[d.cardId].push(level.from);
+        map[d.cardId].push(level.to);
       }
     }
     return map;
