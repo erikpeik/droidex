@@ -13,6 +13,7 @@ const TIER_CLASS: Record<string, string> = {
   GOLD: 'text-amber-400',
   DIAMOND: 'text-sky-300',
   RAINBOW: 'rainbow-tab',
+  BESKAR: 'text-yellow-200',
 };
 
 function imgSrc(name: string, tier: string): string {
@@ -149,7 +150,6 @@ export function RebirthPanel({
             <div className="flex flex-wrap gap-3 justify-center">
               {/* Credits card */}
               <div className="flex flex-col items-center gap-1">
-                <div className="h-5" />
                 <div className="credits-card relative w-[88px] h-[88px] rounded-xl border-2 border-amber-500/70 flex flex-col items-center justify-center gap-0.5 overflow-hidden">
                   <div className="credits-card-glow absolute inset-0 pointer-events-none" />
                   <span className="text-amber-400 text-base leading-none relative z-10">
@@ -175,62 +175,34 @@ export function RebirthPanel({
                     key={d.cardId}
                     className="flex flex-col items-center gap-1"
                   >
-                    {/* Warning triangle above card if missing */}
-                    <div className="h-5 flex items-center justify-center">
-                      {!have && (
-                        <div className="flex items-center justify-center w-5 h-5 rounded bg-yellow-400/15">
-                          <svg
-                            viewBox="0 0 16 14"
-                            className="w-3.5 h-3.5"
-                            fill="none"
-                          >
-                            <polygon
-                              points="8,1 15,13 1,13"
-                              fill="#facc15"
-                              stroke="#ca8a04"
-                              strokeWidth="0.5"
-                            />
-                            <text
-                              x="8"
-                              y="11.5"
-                              textAnchor="middle"
-                              fontSize="8"
-                              fontWeight="bold"
-                              fill="#1c1917"
-                            >
-                              !
-                            </text>
-                          </svg>
-                        </div>
-                      )}
-                    </div>
-
                     {/* Card */}
-                    <div
-                      className={`relative w-[88px] h-[88px] rounded-xl border-2 overflow-hidden bg-zinc-900 ${have ? 'droid-card-owned' : 'droid-card-missing'}`}
-                    >
-                      {/* Droid image */}
-                      <img
-                        src={imgSrc(d.name, d.tier)}
-                        alt={d.name}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).style.display = 'none';
-                        }}
-                      />
+                    <div className="relative">
+                      <div
+                        className={`relative w-[88px] h-[88px] rounded-xl border-[3px] overflow-hidden bg-zinc-900 ${have ? 'droid-card-owned' : 'droid-card-missing'}`}
+                      >
+                        {/* Droid image */}
+                        <img
+                          src={imgSrc(d.name, d.tier)}
+                          alt={d.name}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).style.display =
+                              'none';
+                          }}
+                        />
 
-                      {/* Tier label — bottom inside */}
-                      <div className="absolute bottom-0 left-0 right-0 text-center py-0.5 bg-black/60">
-                        <span
-                          className={`text-[8px] font-black uppercase tracking-wide ${TIER_CLASS[d.tier] ?? 'text-gray-400'}`}
-                        >
-                          {d.tier}
-                        </span>
+                        <div className="absolute bottom-0 left-0 right-0 text-center py-0.5 bg-black/60">
+                          <span
+                            className={`text-[10px] font-black uppercase tracking-wide ${TIER_CLASS[d.tier] ?? 'text-gray-400'}`}
+                          >
+                            {d.tier}
+                          </span>
+                        </div>
                       </div>
 
-                      {/* Check / X circle — top left */}
+                      {/* Check / X circle — top left on border */}
                       <div
-                        className={`absolute top-1 left-1 w-5 h-5 rounded-full flex items-center justify-center ${have ? 'bg-green-500' : 'bg-red-500'}`}
+                        className={`absolute -top-2 -left-2 w-6 h-6 rounded-full flex items-center justify-center z-10 ${have ? 'bg-green-500' : 'bg-red-500'}`}
                       >
                         {have ? (
                           <svg

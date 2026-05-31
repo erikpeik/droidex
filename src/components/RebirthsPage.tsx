@@ -126,34 +126,36 @@ export function RebirthsPage({ rebirthLevel, collected, onSetRebirth }: Props) {
                       key={d.cardId}
                       className="flex flex-col items-center gap-1"
                     >
-                      <div
-                        className={`relative w-[76px] h-[76px] rounded-xl border-2 overflow-hidden bg-zinc-900 ${
-                          isDone
-                            ? 'border-zinc-700'
-                            : have
-                              ? 'border-green-500 shadow-[0_0_8px_2px_rgba(34,197,94,0.35)]'
-                              : 'border-red-500 shadow-[0_0_8px_2px_rgba(239,68,68,0.35)]'
-                        }`}
-                      >
-                        <img
-                          src={imgSrc(d.name, d.tier)}
-                          alt={d.name}
-                          className="w-full h-full object-cover"
-                          onError={(e) => {
-                            (e.target as HTMLImageElement).style.display =
-                              'none';
-                          }}
-                        />
-                        <div className="absolute bottom-0 left-0 right-0 text-center py-0.5 bg-black/60">
-                          <span
-                            className={`text-[8px] font-black uppercase tracking-wide ${TIER_TEXT[d.tier]}`}
-                          >
-                            {d.tier}
-                          </span>
+                      <div className="relative">
+                        <div
+                          className={`relative w-[76px] h-[76px] rounded-xl border-[3px] overflow-hidden bg-zinc-900 ${
+                            isDone
+                              ? 'border-zinc-700'
+                              : have
+                                ? 'border-green-500 shadow-[0_0_8px_2px_rgba(34,197,94,0.35)]'
+                                : 'border-red-500 shadow-[0_0_8px_2px_rgba(239,68,68,0.35)]'
+                          }`}
+                        >
+                          <img
+                            src={imgSrc(d.name, d.tier)}
+                            alt={d.name}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              (e.target as HTMLImageElement).style.display =
+                                'none';
+                            }}
+                          />
+                          <div className="absolute bottom-0 left-0 right-0 text-center py-0.5 bg-black/60">
+                            <span
+                              className={`text-[10px] font-black uppercase tracking-wide ${TIER_TEXT[d.tier]}`}
+                            >
+                              {d.tier}
+                            </span>
+                          </div>
                         </div>
                         {!isDone && (
                           <div
-                            className={`absolute top-1 left-1 w-5 h-5 rounded-full flex items-center justify-center ${have ? 'bg-green-500' : 'bg-red-500'}`}
+                            className={`absolute -top-2 -left-2 w-6 h-6 rounded-full flex items-center justify-center z-10 ${have ? 'bg-green-500' : 'bg-red-500'}`}
                           >
                             {have ? (
                               <svg

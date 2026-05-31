@@ -80,11 +80,6 @@ export function Header({
         )}
       </NavLink>
 
-      {/* Stat: known droids */}
-      <div className="shrink-0 text-[10px] text-zinc-600 hidden sm:block">
-        {knownTotal} tracked · {TOTAL_DROIDS - knownTotal} TBD
-      </div>
-
       {onSignIn && (
         <button
           className="gsi-material-button shrink-0"
