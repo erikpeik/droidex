@@ -38,7 +38,7 @@ export function RebirthsPage({ rebirthLevel, collected, onSetRebirth }: Props) {
   return (
     <div className="flex-1">
       {/* Sticky rebirth level selector */}
-      <div className="sticky top-0 z-10 bg-black border-b border-zinc-800 px-4 py-2 flex items-center justify-center gap-4">
+      <div className="sticky top-0 z-20 bg-black border-b border-zinc-800 px-4 py-2 flex items-center justify-center gap-4">
         <button
           type="button"
           onClick={() => onSetRebirth(Math.max(0, rebirthLevel - 1))}

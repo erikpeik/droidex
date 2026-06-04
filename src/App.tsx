@@ -33,8 +33,8 @@ export default function App() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center font-mono">
-        <span className="text-cyan-400 text-lg tracking-widest animate-pulse glow-cyan">
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <span className="text-cyan-400 text-lg tracking-wider animate-pulse glow-cyan font-bold">
           DROIDEX
         </span>
       </div>
@@ -42,7 +42,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-black flex flex-col font-mono">
+    <div className="min-h-screen bg-black flex flex-col">
       <Header
         collected={collected}
         rebirthLevel={rebirthLevel}
@@ -59,17 +59,17 @@ export default function App() {
               <TierTabs active={tier} onChange={setTier} />
 
               {/* Main panel: grid left + filter sidebar right on desktop */}
-              <div className="bg-zinc-950 border border-zinc-800 border-t-0 mx-3 rounded-b-lg flex flex-col lg:flex-row overflow-hidden max-h-[800px]">
+              <div className="bg-zinc-950 border border-zinc-800 border-t-0 mx-3 rounded-b-lg flex flex-col lg:flex-row overflow-hidden max-h-[850px]">
                 {/* Filter sidebar — top on mobile (order-first), right on desktop (lg:order-last) */}
-                <aside className="order-first lg:order-last shrink-0 lg:w-64 lg:border-l border-b lg:border-b-0 border-zinc-800 flex flex-col bg-zinc-950">
+                <aside className="order-first lg:order-last shrink-0 lg:w-72 lg:border-l border-b lg:border-b-0 border-zinc-800 flex flex-col bg-zinc-950">
                   {/* Mobile toggle header */}
                   <button
                     type="button"
                     onClick={() => setFiltersOpen((o) => !o)}
                     className="lg:hidden flex items-center justify-between w-full px-4 py-2.5 text-left"
                   >
-                    <span className="text-xs sm:text-[10px] font-bold tracking-widest text-zinc-400">
-                      FILTERS
+                    <span className="text-xs font-semibold tracking-wider text-zinc-400 uppercase">
+                      Filters
                     </span>
                     <span className="text-zinc-600 text-sm sm:text-xs">
                       {filtersOpen ? '▲' : '▼'}
@@ -82,16 +82,16 @@ export default function App() {
                   >
                     {/* Rarity */}
                     <div className="px-4 py-3 border-b border-zinc-800">
-                      <p className="text-xs sm:text-[9px] font-bold tracking-widest text-zinc-500 mb-2">
-                        RARITY
+                      <p className="text-xs font-semibold tracking-wider text-zinc-500 mb-2 uppercase">
+                        Rarity
                       </p>
                       <RarityFilter active={rarity} onChange={setRarity} />
                     </div>
 
                     {/* Class */}
                     <div className="px-4 py-3 border-b border-zinc-800">
-                      <p className="text-xs sm:text-[9px] font-bold tracking-widest text-zinc-500 mb-2">
-                        CLASS
+                      <p className="text-xs font-semibold tracking-wider text-zinc-500 mb-2 uppercase">
+                        Class
                       </p>
                       <ClassFilter
                         active={droidClass}
@@ -101,8 +101,8 @@ export default function App() {
 
                     {/* Collection */}
                     <div className="px-4 py-3">
-                      <p className="text-xs sm:text-[9px] font-bold tracking-widest text-zinc-500 mb-2">
-                        COLLECTION
+                      <p className="text-xs font-semibold tracking-wider text-zinc-500 mb-2 uppercase">
+                        Collection
                       </p>
                       <CollectionFilter
                         active={collectionStatus}
