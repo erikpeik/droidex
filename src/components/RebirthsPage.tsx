@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { REBIRTH_LEVELS } from '../data/rebirths';
+import { getSquadUnlockDescription } from '../data/squads';
 
 interface Props {
   rebirthLevel: number;
@@ -100,6 +101,11 @@ export function RebirthsPage({ rebirthLevel, collected, onSetRebirth }: Props) {
                 <span className="px-2 py-0.5 rounded-md bg-zinc-800 border border-yellow-500/40 text-yellow-400 font-bold text-xs">
                   {level.credits} credits
                 </span>
+                {getSquadUnlockDescription(level.to) && (
+                  <span className="px-2 py-0.5 rounded-md bg-teal-950/40 border border-teal-800/40 text-teal-400 font-bold text-xs uppercase tracking-wide">
+                    {getSquadUnlockDescription(level.to)}
+                  </span>
+                )}
                 <div className="ml-auto">
                   {isDone ? (
                     <span className="text-xs font-bold text-zinc-500">

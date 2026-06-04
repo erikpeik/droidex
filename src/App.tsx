@@ -14,6 +14,7 @@ import { DroidGrid } from './components/DroidGrid';
 import { RebirthPanel } from './components/RebirthPanel';
 import { RebirthsPage } from './components/RebirthsPage';
 import { UntrackConfirmModal } from './components/UntrackConfirmModal';
+import { SquadsPage } from './components/SquadsPage';
 
 type RarityOrAll = Rarity | 'ALL';
 type DroidTypeOrAll = DroidType | 'ALL';
@@ -21,9 +22,15 @@ type CollectionStatus = 'ALL' | 'OWNED' | 'MISSING';
 
 export default function App() {
   const { user, loading, signInWithGoogle, signOut } = useAuth();
-  const { collected, toggle, rebirthLevel, setRebirthLevel } = useTracker(
-    user?.uid ?? null,
-  );
+  const {
+    collected,
+    toggle,
+    rebirthLevel,
+    setRebirthLevel,
+    squads,
+    assignToSquad,
+    clearSquad,
+  } = useTracker(user?.uid ?? null);
   const [tier, setTier] = useState<TierOrAll>('ALL');
   const [rarity, setRarity] = useState<RarityOrAll>('ALL');
   const [droidClass, setDroidClass] = useState<DroidTypeOrAll>('ALL');
@@ -81,6 +88,7 @@ export default function App() {
         user={user}
         onSignIn={user ? undefined : signInWithGoogle}
         onSignOut={user ? signOut : undefined}
+        squads={squads}
       />
 
       <Routes>
@@ -198,6 +206,18 @@ export default function App() {
                 onHighlight={setHighlightedIds}
               />
             </div>
+          }
+        />
+        <Route
+          path="/squads"
+          element={
+            <SquadsPage
+              collected={collected}
+              rebirthLevel={rebirthLevel}
+              squads={squads}
+              assignToSquad={assignToSquad}
+              clearSquad={clearSquad}
+            />
           }
         />
         <Route
