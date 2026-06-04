@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { REBIRTH_LEVELS } from '../data/rebirths';
 
 interface Props {
@@ -111,7 +112,7 @@ export function RebirthPanel({
             </span>
           )}
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2.5">
           {nextRebirth &&
             (allMet ? (
               <span className="glow-green text-xs font-bold text-green-400">
@@ -132,7 +133,26 @@ export function RebirthPanel({
                 </div>
               </div>
             ))}
-          <span className="text-zinc-600 text-xs">{open ? '▼' : '▲'}</span>
+          <Link
+            to="/rebirths"
+            onClick={(e) => e.stopPropagation()}
+            className="text-xs text-orange-500 hover:text-orange-400 border border-orange-500/20 hover:border-orange-500/50 rounded px-2 py-1 bg-orange-950/20 transition-all font-semibold flex items-center gap-1.5"
+          >
+            <span>Full Path</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              className="w-3.5 h-3.5"
+            >
+              <path
+                fillRule="evenodd"
+                d="M2 8a.75.75 0 0 1 .75-.75h8.69L8.22 4.03a.75.75 0 0 1 1.06-1.06l4.5 4.5a.75.75 0 0 1 0 1.06l-4.5 4.5a.75.75 0 0 1-1.06-1.06l3.22-3.22H2.75A.75.75 0 0 1 2 8Z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </Link>
+          <span className="text-zinc-600 text-xs ml-1">{open ? '▼' : '▲'}</span>
         </div>
         </div>
 
