@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { REBIRTH_LEVELS } from '../data/rebirths';
+import { getSquadUnlockDescription } from '../data/squads';
 
 interface Props {
   rebirthLevel: number;
@@ -108,6 +109,11 @@ export function RebirthPanel({
                   {nextRebirth.to}
                 </span>
               </span>
+              {getSquadUnlockDescription(nextRebirth.to) && (
+                <span className="text-[9px] font-black text-teal-400 bg-teal-950/60 border border-teal-900/60 rounded px-1.5 py-0.5 ml-2 uppercase tracking-wide">
+                  Reward: {getSquadUnlockDescription(nextRebirth.to)}
+                </span>
+              )}
             </span>
           ) : (
             <span className="text-yellow-400 text-xs font-bold tracking-wide">
