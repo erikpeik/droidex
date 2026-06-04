@@ -42,7 +42,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-black flex flex-col">
+    <div className="min-h-screen lg:h-screen bg-black flex flex-col lg:overflow-hidden">
       <Header
         collected={collected}
         rebirthLevel={rebirthLevel}
@@ -55,11 +55,11 @@ export default function App() {
         <Route
           path="/"
           element={
-            <div className="flex flex-col">
+            <div className="flex-1 flex flex-col min-h-0">
               <TierTabs active={tier} onChange={setTier} />
 
               {/* Main panel: grid left + filter sidebar right on desktop */}
-              <div className="bg-zinc-950 border border-zinc-800 border-t-0 mx-3 rounded-b-lg flex flex-col lg:flex-row overflow-hidden max-h-[850px]">
+              <div className="bg-zinc-950 border border-zinc-800 border-t-0 mx-3 rounded-b-lg flex flex-col lg:flex-row overflow-hidden lg:flex-1 lg:min-h-0">
                 {/* Filter sidebar — top on mobile (order-first), right on desktop (lg:order-last) */}
                 <aside className="order-first lg:order-last shrink-0 lg:w-72 lg:border-l border-b lg:border-b-0 border-zinc-800 flex flex-col bg-zinc-950">
                   {/* Mobile toggle header */}

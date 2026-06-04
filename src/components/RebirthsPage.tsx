@@ -36,7 +36,7 @@ export function RebirthsPage({ rebirthLevel, collected, onSetRebirth }: Props) {
   }, [rebirthLevel]);
 
   return (
-    <div className="flex-1">
+    <div className="flex-1 lg:overflow-y-auto">
       {/* Sticky rebirth level selector */}
       <div className="sticky top-0 z-20 bg-black border-b border-zinc-800 px-4 py-2 flex items-center justify-center gap-4">
         <button
