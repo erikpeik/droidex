@@ -29,6 +29,7 @@ export function RebirthPanel({
   onHighlight,
 }: Props) {
   const [open, setOpen] = useState(true);
+  const panelContentId = 'rebirth-panel-content';
 
   const nextRebirth = useMemo(
     () => REBIRTH_LEVELS.find((r) => r.from === rebirthLevel),
@@ -63,6 +64,8 @@ export function RebirthPanel({
       <div
         role="button"
         tabIndex={0}
+        aria-expanded={open}
+        aria-controls={panelContentId}
         onClick={() => setOpen((v) => !v)}
         onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpen((v) => !v); } }}
         className="w-full flex items-center justify-between px-4 py-2.5 hover:bg-zinc-900/70 transition-colors cursor-pointer"
@@ -157,7 +160,7 @@ export function RebirthPanel({
         </div>
 
       {open && nextRebirth && (
-        <div className="px-4 pb-4 pt-1">
+        <div id={panelContentId} className="px-4 pb-4 pt-1">
           {/* NEED divider */}
           <div className="flex items-center gap-3 mb-3">
             <div className="need-divider-left flex-1 h-px" />
@@ -267,7 +270,7 @@ export function RebirthPanel({
       )}
 
       {open && !nextRebirth && (
-        <div className="px-4 pb-4 pt-2 text-center">
+        <div id={panelContentId} className="px-4 pb-4 pt-2 text-center">
           <span className="glow-yellow text-yellow-400 font-bold text-sm tracking-wider uppercase">
             ★ MAX REBIRTH REACHED ★
           </span>
