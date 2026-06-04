@@ -15,10 +15,10 @@ A web-based tracker for the **Fortnite Star Wars Droid Tycoon** game mode. Track
 
 ## Data
 
-Droid list and rebirth requirements sourced from the community spreadsheets:
+Droid list and rebirth requirements sourced from the community spreadsheet:
 <https://docs.google.com/spreadsheets/d/1otLCKSCMKICMlnefirQ8KZhh_rdZTd5Mp8h0UYFUiqg>
 
-Droid base prices sourced from the in-game and community spreadsheets:
+Droid base prices sourced from the in-game and community spreadsheet:
 <https://docs.google.com/spreadsheets/d/1otLCKSCMKICMlnefirQ8KZhh_rdZTd5Mp8h0UYFUiqg/edit?gid=1248391507#gid=1248391507>
 
 ## Contributing
