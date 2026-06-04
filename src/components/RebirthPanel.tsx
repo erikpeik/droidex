@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { REBIRTH_LEVELS } from '../data/rebirths';
 
 interface Props {
@@ -28,6 +29,7 @@ export function RebirthPanel({
   onHighlight,
 }: Props) {
   const [open, setOpen] = useState(true);
+  const panelContentId = 'rebirth-panel-content';
 
   const nextRebirth = useMemo(
     () => REBIRTH_LEVELS.find((r) => r.from === rebirthLevel),
@@ -59,14 +61,18 @@ export function RebirthPanel({
       onMouseLeave={handleMouseLeave}
     >
       {/* Toggle header */}
-      <button
-        type="button"
+      <div
+        role="button"
+        tabIndex={0}
+        aria-expanded={open}
+        aria-controls={panelContentId}
         onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-center justify-between px-4 py-2.5 hover:bg-zinc-900/70 transition-colors"
+        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpen((v) => !v); } }}
+        className="w-full flex items-center justify-between px-4 py-2.5 hover:bg-zinc-900/70 transition-colors cursor-pointer"
       >
         <div className="flex items-center gap-3">
-          <span className="glow-orange text-orange-400 font-bold text-sm tracking-widest uppercase">
-            REBIRTH
+          <span className="glow-orange text-orange-400 font-bold text-sm tracking-wider uppercase">
+            Rebirth
           </span>
           <div className="flex items-center gap-1.5">
             <button
@@ -79,7 +85,7 @@ export function RebirthPanel({
             >
               −
             </button>
-            <span className="text-orange-400 font-bold text-base w-6 text-center">
+            <span className="text-orange-400 font-bold text-base w-6 text-center font-mono">
               {rebirthLevel}
             </span>
             <button
@@ -109,7 +115,7 @@ export function RebirthPanel({
             </span>
           )}
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2.5">
           {nextRebirth &&
             (allMet ? (
               <span className="glow-green text-xs font-bold text-green-400">
@@ -130,16 +136,35 @@ export function RebirthPanel({
                 </div>
               </div>
             ))}
-          <span className="text-zinc-600 text-xs">{open ? '▼' : '▲'}</span>
+          <Link
+            to="/rebirths"
+            onClick={(e) => e.stopPropagation()}
+            className="text-xs text-orange-500 hover:text-orange-400 border border-orange-500/20 hover:border-orange-500/50 rounded px-2 py-1 bg-orange-950/20 transition-all font-semibold flex items-center gap-1.5"
+          >
+            <span>Full Path</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              className="w-3.5 h-3.5"
+            >
+              <path
+                fillRule="evenodd"
+                d="M2 8a.75.75 0 0 1 .75-.75h8.69L8.22 4.03a.75.75 0 0 1 1.06-1.06l4.5 4.5a.75.75 0 0 1 0 1.06l-4.5 4.5a.75.75 0 0 1-1.06-1.06l3.22-3.22H2.75A.75.75 0 0 1 2 8Z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </Link>
+          <span className="text-zinc-600 text-xs ml-1">{open ? '▼' : '▲'}</span>
         </div>
-      </button>
+        </div>
 
       {open && nextRebirth && (
-        <div className="px-4 pb-4 pt-1">
+        <div id={panelContentId} className="px-4 pb-4 pt-1">
           {/* NEED divider */}
           <div className="flex items-center gap-3 mb-3">
             <div className="need-divider-left flex-1 h-px" />
-            <span className="need-label text-[10px] font-black tracking-[0.3em] uppercase">
+            <span className="need-label text-[10px] font-black tracking-[0.2em] uppercase">
               NEED
             </span>
             <div className="need-divider-right flex-1 h-px" />
@@ -157,7 +182,7 @@ export function RebirthPanel({
                       alt="Credits"
                       className="w-12 h-12 object-contain"
                     />
-                    <span className="text-amber-400 font-black text-base leading-tight text-center">
+                    <span className="text-amber-400 font-bold text-base leading-tight text-center font-mono">
                       {nextRebirth.credits}
                     </span>
                   </div>
@@ -193,7 +218,7 @@ export function RebirthPanel({
 
                         <div className="absolute bottom-0 left-0 right-0 text-center py-0.5 bg-black/60">
                           <span
-                            className={`text-[10px] font-black uppercase tracking-wide ${TIER_CLASS[d.tier] ?? 'text-gray-400'}`}
+                            className={`text-[10px] font-bold uppercase tracking-wide ${TIER_CLASS[d.tier] ?? 'text-gray-400'}`}
                           >
                             {d.tier}
                           </span>
@@ -233,7 +258,7 @@ export function RebirthPanel({
                     </div>
 
                     {/* Name below */}
-                    <span className="text-white text-[10px] font-bold w-[88px] text-center truncate">
+                    <span className="text-white text-[10px] font-semibold w-[88px] text-center truncate">
                       {d.name}
                     </span>
                   </div>
@@ -245,8 +270,8 @@ export function RebirthPanel({
       )}
 
       {open && !nextRebirth && (
-        <div className="px-4 pb-4 pt-2 text-center">
-          <span className="glow-yellow text-yellow-400 font-black text-sm tracking-widest uppercase">
+        <div id={panelContentId} className="px-4 pb-4 pt-2 text-center">
+          <span className="glow-yellow text-yellow-400 font-bold text-sm tracking-wider uppercase">
             ★ MAX REBIRTH REACHED ★
           </span>
         </div>

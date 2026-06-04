@@ -60,7 +60,7 @@ export function TierTabs({ active, onChange }: Props) {
             type="button"
             onClick={() => onChange(tier)}
             className={[
-              'px-3 py-1.5 text-sm sm:text-xs font-bold tracking-widest rounded-t-md border-t border-x transition-all duration-150 shrink-0',
+              'px-3 py-1.5 text-sm font-bold tracking-wide rounded-t-md border-t border-x transition-all duration-150 shrink-0',
               isActive
                 ? style.active + ' -mb-px border-b border-b-zinc-950'
                 : style.inactive,

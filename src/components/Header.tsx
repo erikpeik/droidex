@@ -24,7 +24,7 @@ export function Header({
     <header className="bg-black border-b border-zinc-800 px-4 py-3 flex items-center gap-4 flex-wrap">
       {/* Title */}
       <Link to="/" className="shrink-0">
-        <h1 className="text-2xl font-extrabold tracking-widest text-cyan-400 drop-shadow-[0_0_8px_rgba(0,229,255,0.7)]">
+        <h1 className="text-2xl font-extrabold tracking-wider text-cyan-400 drop-shadow-[0_0_8px_rgba(0,229,255,0.7)]">
           DROIDEX
         </h1>
       </Link>
@@ -52,8 +52,8 @@ export function Header({
           }`
         }
       >
-        <span className="text-xs uppercase tracking-wide">Collected</span>
-        <span className="font-bold text-lg leading-none">
+        <span className="text-xs uppercase tracking-wide font-semibold">Collected</span>
+        <span className="font-bold text-lg leading-none font-mono">
           {collectedCount}
           <span className="text-[10px] font-normal opacity-60">
             /{TOTAL_DROIDS}
@@ -72,8 +72,8 @@ export function Header({
           }`
         }
       >
-        <span className="text-xs uppercase tracking-wide">Rebirth</span>
-        <span className="font-bold text-lg leading-none">{rebirthLevel}</span>
+        <span className="text-xs uppercase tracking-wide font-semibold">Rebirth</span>
+        <span className="font-bold text-lg leading-none font-mono">{rebirthLevel}</span>
         {rebirthLevel >= 23 && (
           <span className="text-yellow-400 text-xs font-bold ml-1">MAX</span>
         )}

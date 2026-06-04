@@ -13,7 +13,7 @@ const OPTIONS: { value: CollectionStatus; label: string; color: string }[] = [
 
 export function CollectionFilter({ active, onChange }: Props) {
   return (
-    <div className="flex flex-wrap gap-1.5">
+    <div className="grid grid-cols-2 gap-1.5">
       {OPTIONS.map((opt) => {
         const isActive = opt.value === active;
         return (
@@ -21,7 +21,7 @@ export function CollectionFilter({ active, onChange }: Props) {
             key={opt.value}
             type="button"
             onClick={() => onChange(opt.value)}
-            className="px-2.5 py-1 sm:py-0.5 text-xs sm:text-[10px] font-bold tracking-widest rounded-full border transition-all duration-100"
+            className="px-2.5 py-1.5 text-xs font-semibold tracking-wide rounded-md border transition-all duration-100 text-center"
             style={{
               borderColor: opt.color,
               color: isActive ? '#000' : opt.color,

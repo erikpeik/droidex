@@ -143,26 +143,26 @@ export function DroidCard({
             <div className="bg-black/90 border-t border-zinc-700/80 px-2 py-1.5 backdrop-blur-sm">
               <div className="grid grid-cols-3 gap-x-1 text-center">
                 <div>
-                  <p className="text-[7px] font-bold tracking-widest text-zinc-500 uppercase">
+                  <p className="text-[8px] font-bold tracking-wider text-zinc-500 uppercase">
                     COST
                   </p>
-                  <p className="text-[9px] font-bold text-amber-400 leading-tight glow-amber-sm">
+                  <p className="text-[10px] font-bold text-amber-400 leading-tight glow-amber-sm font-mono">
                     {stats.cost ?? '—'}
                   </p>
                 </div>
                 <div>
-                  <p className="text-[7px] font-bold tracking-widest text-zinc-500 uppercase">
+                  <p className="text-[8px] font-bold tracking-wider text-zinc-500 uppercase">
                     INCOME
                   </p>
-                  <p className="text-[9px] font-bold text-cyan-400 leading-tight glow-cyan-sm">
+                  <p className="text-[10px] font-bold text-cyan-400 leading-tight glow-cyan-sm font-mono">
                     {stats.income ?? '—'}
                   </p>
                 </div>
                 <div>
-                  <p className="text-[7px] font-bold tracking-widest text-zinc-500 uppercase">
+                  <p className="text-[8px] font-bold tracking-wider text-zinc-500 uppercase">
                     VALUE
                   </p>
-                  <p className="text-[9px] font-bold text-emerald-400 leading-tight glow-emerald-sm">
+                  <p className="text-[10px] font-bold text-emerald-400 leading-tight glow-emerald-sm font-mono">
                     {stats.value ?? '—'}
                   </p>
                 </div>
@@ -173,7 +173,7 @@ export function DroidCard({
 
         {droid.eventLocked && (
           <div className="absolute bottom-0 left-0 right-0 flex justify-center pb-1">
-            <span className="text-red-400 text-[8px] font-bold tracking-widest uppercase bg-black/50 px-1.5 py-0.5 rounded">
+            <span className="text-red-400 text-[9px] font-bold tracking-wider uppercase bg-black/50 px-1.5 py-0.5 rounded">
               event locked
             </span>
           </div>
@@ -182,18 +182,18 @@ export function DroidCard({
 
       {/* Footer */}
       <div className="w-full bg-black px-2 pt-1 pb-1.5">
-        <p className="text-white font-black italic leading-tight truncate text-sm">
+        <p className="text-white font-bold leading-tight truncate text-sm">
           {droid.name}
         </p>
         <div className="flex items-center gap-1 flex-wrap mt-0.5">
           <span
-            className={`${RARITY_CLASS[droid.rarity]} text-[9px] font-bold px-1.5 py-px rounded-full uppercase tracking-wide inline-block`}
+            className={`${RARITY_CLASS[droid.rarity]} text-[10px] font-semibold px-1.5 py-px rounded-full uppercase tracking-wide inline-block`}
           >
             {droid.rarity}
           </span>
           {rebirthLevels && rebirthLevels.length > 0 && (
             <span
-              className="text-[9px] font-bold px-1.5 py-px rounded-full uppercase tracking-wide inline-block text-orange-400 bg-orange-500/15 border border-orange-500/40"
+              className="text-[10px] font-semibold px-1.5 py-px rounded-full uppercase tracking-wide inline-block text-orange-400 bg-orange-500/15 border border-orange-500/40"
               title={`Required for rebirth${rebirthLevels.length > 1 ? 's' : ''} ${rebirthLevels.join(', ')}`}
             >
               <RefreshCw
@@ -210,14 +210,14 @@ export function DroidCard({
           <div className="flex mt-1.5 border border-zinc-800">
             <div className="flex-1 flex items-center justify-center gap-0.5 px-1 py-1 bg-zinc-950">
               <span className="text-amber-500 text-[9px] leading-none">◎</span>
-              <span className="text-amber-400 text-[9px] font-bold leading-none glow-amber-sm whitespace-nowrap">
+              <span className="text-amber-400 text-[10px] font-bold leading-none glow-amber-sm whitespace-nowrap font-mono">
                 {stats.cost ?? '—'}
               </span>
             </div>
             <div className="w-px bg-zinc-800" />
             <div className="flex-1 flex items-center justify-center gap-0.5 px-1 py-1 bg-zinc-950">
               <span className="text-cyan-400 text-[9px] leading-none">⚡</span>
-              <span className="text-cyan-400 text-[9px] font-bold leading-none glow-cyan-sm whitespace-nowrap">
+              <span className="text-cyan-400 text-[10px] font-bold leading-none glow-cyan-sm whitespace-nowrap font-mono">
                 {stats.income ?? '—'}
               </span>
             </div>
