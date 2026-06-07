@@ -72,7 +72,7 @@ export function SquadsPage({
               Milestone Reward
             </p>
             <p className="text-xs font-bold text-zinc-400 mt-0.5 leading-none">
-              {rebirthLevel < 16 ? 'Unlock squad slot' : 'Max slots achieved'}
+              {rebirthLevel < 20 ? 'Unlock squad slot' : 'Max slots achieved'}
             </p>
           </div>
         </div>

@@ -13,7 +13,7 @@ interface StoredState {
 
 const DEFAULT_SQUADS: SquadAssignments = {
   COMPANION: [null],
-  LOUNGE: [null, null, null, null, null],
+  LOUNGE: [null, null, null, null, null, null, null, null, null],
   WORKER: [null, null, null, null, null, null, null, null, null, null, null],
   ASTROMECH: [null, null, null, null, null, null, null, null, null],
   BATTLE: [null, null, null, null, null],

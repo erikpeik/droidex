@@ -28,7 +28,7 @@ export const SQUAD_DEFINITIONS: Record<SquadType, SquadDefinition> = {
     type: 'LOUNGE',
     name: 'Droid Lounge',
     baseSlots: 5,
-    maxSlots: 5,
+    maxSlots: 9,
     description: 'A place to park droids, including those you need to save for upcoming rebirths.',
     themeColor: '#fbbf24', // Amber
   },
@@ -62,7 +62,7 @@ export const SQUAD_DEFINITIONS: Record<SquadType, SquadDefinition> = {
 // index 0 corresponds to slot index `baseSlots` (first unlockable slot)
 export const SQUAD_SLOT_UNLOCKS: Record<SquadType, number[]> = {
   COMPANION: [],
-  LOUNGE: [],
+  LOUNGE: [17, 18, 19, 20],
   WORKER: [1, 4, 7, 10, 12, 14, 16], // 1st unlock at rebirth 1, 2nd at 4, etc.
   ASTROMECH: [2, 5, 8, 11, 13, 15],
   BATTLE: [3, 6, 9],
@@ -128,5 +128,9 @@ export function getSquadUnlockDescription(rebirthLevel: number): string | null {
   if (rebirthLevel === 14) return '+1 Worker Slot';
   if (rebirthLevel === 15) return '+1 Astromech Slot';
   if (rebirthLevel === 16) return '+1 Worker Slot';
+  if (rebirthLevel === 17) return '+1 Lounge Slot';
+  if (rebirthLevel === 18) return '+1 Lounge Slot';
+  if (rebirthLevel === 19) return '+1 Lounge Slot';
+  if (rebirthLevel === 20) return '+1 Lounge Slot';
   return null;
 }
