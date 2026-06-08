@@ -88,7 +88,6 @@ export default function App() {
         user={user}
         onSignIn={user ? undefined : signInWithGoogle}
         onSignOut={user ? signOut : undefined}
-        squads={squads}
       />
 
       <Routes>

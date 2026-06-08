@@ -8,7 +8,6 @@ interface Props {
   user?: User | null;
   onSignIn?: () => void;
   onSignOut?: () => void;
-  squads?: Record<string, (string | null)[]>;
 }
 
 export function Header({
@@ -17,17 +16,9 @@ export function Header({
   user,
   onSignIn,
   onSignOut,
-  squads,
 }: Props) {
   const collectedCount = collected.size;
   const pct = Math.round((collectedCount / TOTAL_DROIDS) * 100);
-
-  let assignedCount = 0;
-  if (squads) {
-    for (const key of Object.keys(squads)) {
-      assignedCount += squads[key].filter((id) => id !== null).length;
-    }
-  }
 
   return (
     <header className="bg-black border-b border-zinc-800 px-4 py-3 flex items-center gap-4 flex-wrap">
@@ -54,7 +45,7 @@ export function Header({
         to="/"
         end
         className={({ isActive }) =>
-          `shrink-0 flex items-center gap-2 rounded-lg px-3 py-1.5 border transition-colors ${
+          `shrink-0 flex items-center gap-2 rounded-lg px-3 h-9 border transition-colors ${
             isActive
               ? 'bg-zinc-900 border-cyan-700 text-cyan-400'
               : 'bg-zinc-900 border-zinc-700 text-zinc-500 hover:border-zinc-500 hover:text-zinc-300'
@@ -70,11 +61,11 @@ export function Header({
         </span>
       </NavLink>
 
-      {/* Squads counter → squads page */}
+      {/* Squads page link */}
       <NavLink
         to="/squads"
         className={({ isActive }) =>
-          `shrink-0 flex items-center gap-2 rounded-lg px-3 py-1.5 border transition-colors ${
+          `shrink-0 flex items-center gap-2 rounded-lg px-3 h-9 border transition-colors ${
             isActive
               ? 'bg-zinc-900 border-teal-700 text-teal-400'
               : 'bg-zinc-900 border-zinc-700 text-zinc-500 hover:border-zinc-600 hover:text-zinc-300'
@@ -82,16 +73,13 @@ export function Header({
         }
       >
         <span className="text-xs uppercase tracking-wide font-semibold">Squads</span>
-        <span className="font-bold text-lg leading-none font-mono">
-          {assignedCount}
-        </span>
       </NavLink>
 
       {/* Rebirth badge → rebirths page */}
       <NavLink
         to="/rebirths"
         className={({ isActive }) =>
-          `shrink-0 flex items-center gap-2 rounded-lg px-3 py-1.5 border transition-colors ${
+          `shrink-0 flex items-center gap-2 rounded-lg px-3 h-9 border transition-colors ${
             isActive
               ? 'bg-zinc-900 border-orange-700 text-orange-400'
               : 'bg-zinc-900 border-zinc-700 text-zinc-500 hover:border-zinc-600 hover:text-zinc-300'
