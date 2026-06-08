@@ -23,21 +23,37 @@ function imgSrc(name: string, tier: string): string {
 
 export function RebirthsPage({ rebirthLevel, collected, onSetRebirth }: Props) {
   const currentRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Small delay to ensure DOM has rendered
     const timer = setTimeout(() => {
       const el = currentRef.current;
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      const scrollY = window.scrollY + rect.top - 120;
-      window.scrollTo({ top: Math.max(0, scrollY), behavior: 'smooth' });
+      const container = containerRef.current;
+      if (!el || !container) return;
+
+      // Check if container is scrollable (e.g. overflow-y: auto/scroll is active and clientHeight < scrollHeight)
+      const containerStyle = window.getComputedStyle(container);
+      const isContainerScrollable =
+        (containerStyle.overflowY === 'auto' || containerStyle.overflowY === 'scroll') &&
+        container.scrollHeight > container.clientHeight;
+
+      if (isContainerScrollable) {
+        const containerRect = container.getBoundingClientRect();
+        const elRect = el.getBoundingClientRect();
+        const scrollY = container.scrollTop + (elRect.top - containerRect.top) - 120;
+        container.scrollTo({ top: Math.max(0, scrollY), behavior: 'smooth' });
+      } else {
+        const rect = el.getBoundingClientRect();
+        const scrollY = window.scrollY + rect.top - 120;
+        window.scrollTo({ top: Math.max(0, scrollY), behavior: 'smooth' });
+      }
     }, 100);
     return () => clearTimeout(timer);
   }, [rebirthLevel]);
 
   return (
-    <div className="flex-1 lg:overflow-y-auto">
+    <div ref={containerRef} className="flex-1 lg:overflow-y-auto">
       {/* Sticky rebirth level selector */}
       <div className="sticky top-0 z-20 bg-black border-b border-zinc-800 px-4 py-2 flex items-center justify-center gap-4">
         <button
