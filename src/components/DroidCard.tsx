@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { RefreshCw } from 'lucide-react';
-import type { DroidCard as DroidCardType } from '../data/droids';
+import { TIER_BORDER, TIER_GLOW, type DroidCard as DroidCardType } from '../data/droids';
 import droidStats from '../data/droidStats.json';
 
 interface Props {
@@ -34,21 +34,7 @@ const TYPE_BADGE: Record<string, { img: string; bg: string }> = {
   BATTLE: { img: `${import.meta.env.BASE_URL}img/battle.png`, bg: '#dc2626' },
 };
 
-const TIER_BORDER: Record<string, string> = {
-  DEFAULT: 'border-zinc-600',
-  GOLD: 'border-amber-400',
-  DIAMOND: 'border-sky-300',
-  RAINBOW: 'border-transparent',
-  BESKAR: 'border-transparent',
-};
 
-const TIER_GLOW: Record<string, string> = {
-  DEFAULT: '',
-  GOLD: '0 0 10px 2px rgba(251,191,36,0.4)',
-  DIAMOND: '0 0 10px 2px rgba(147,220,255,0.4)',
-  RAINBOW: '0 0 12px 3px rgba(168,85,247,0.4)',
-  BESKAR: '',
-};
 
 function imgSrc(name: string, tier: string): string {
   const safe = name.replace(/ /g, '_');
@@ -96,8 +82,6 @@ export function DroidCard({
         'transition-all duration-150 select-none cursor-pointer',
         'bg-zinc-900 active:scale-95 droid-card hover:brightness-110',
         TIER_BORDER[tier],
-        isRainbow ? 'rainbow-border-animated' : '',
-        isBeskar ? 'beskar-card' : '',
         ringClass,
       ].join(' ')}
       style={{

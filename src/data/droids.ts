@@ -153,3 +153,19 @@ export const TIER_ORDER: Tier[] = [
   'RAINBOW',
   'BESKAR',
 ];
+
+export const TIER_BORDER: Record<Tier, string> = {
+  DEFAULT: 'border-zinc-600',
+  GOLD: 'border-amber-400',
+  DIAMOND: 'border-sky-300',
+  RAINBOW: 'rainbow-border-animated border-transparent',
+  BESKAR: 'beskar-card border-transparent',
+};
+
+export const TIER_GLOW: Record<Tier, string> = {
+  DEFAULT: '',
+  GOLD: '0 0 10px 2px rgba(251,191,36,0.4)',
+  DIAMOND: '0 0 10px 2px rgba(147,220,255,0.4)',
+  RAINBOW: '0 0 12px 3px rgba(168,85,247,0.4)',
+  BESKAR: '',
+};

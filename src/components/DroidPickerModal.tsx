@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { Search, AlertTriangle, Check, HelpCircle } from 'lucide-react';
-import { ALL_CARDS, Rarity, Tier, DroidType } from '../data/droids';
+import { ALL_CARDS, Rarity, Tier, DroidType, TIER_BORDER, TIER_GLOW } from '../data/droids';
 import { SquadType, SQUAD_DEFINITIONS, getRebirthRequirementsForDroid } from '../data/squads';
 import {
   Dialog,
@@ -37,6 +37,7 @@ const TIER_TEXT: Record<Tier, string> = {
   RAINBOW: 'text-purple-400 border-purple-500/30 bg-purple-950/20',
   BESKAR: 'text-yellow-200 border-yellow-500/30 bg-yellow-950/20',
 };
+
 
 const RARITY_VALUE: Record<Rarity, number> = {
   COMMON: 1,
@@ -254,11 +255,14 @@ export function DroidPickerModal({
                     key={card.id}
                     type="button"
                     onClick={() => onSelect(card.id)}
-                    className={`group relative flex flex-col rounded-lg border-2 bg-zinc-900/60 p-1.5 transition-all hover:scale-95 duration-100 text-left overflow-hidden ${
-                      isCollected
-                        ? 'border-zinc-800 hover:border-cyan-500/50'
-                        : 'border-zinc-900 opacity-60 hover:opacity-100 hover:border-zinc-700'
+                    className={`group relative flex flex-col rounded-lg border-4 bg-zinc-900/60 p-1.5 transition-all hover:scale-95 duration-100 text-left overflow-hidden ${
+                      isCollected ? '' : 'opacity-60 hover:opacity-100'
+                    } ${
+                      TIER_BORDER[card.tier]
                     }`}
+                    style={{
+                      boxShadow: TIER_GLOW[card.tier] || undefined,
+                    }}
                   >
                     {/* Thumbnail */}
                     <div className="relative aspect-square w-full rounded-md bg-zinc-950 overflow-hidden mb-1">
