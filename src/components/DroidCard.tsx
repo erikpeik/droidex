@@ -57,7 +57,6 @@ export function DroidCard({
 }: Props) {
   const { droid, tier, id } = card;
   const badge = TYPE_BADGE[droid.type];
-  const isRainbow = tier === 'RAINBOW';
   const isBeskar = tier === 'BESKAR';
   const [imgFailed, setImgFailed] = useState(false);
   const [hovered, setHovered] = useState(false);
@@ -220,11 +219,10 @@ export function DroidCard({
 
       {/* Collected checkbox — top left */}
       <div
-        className={`absolute top-1.5 left-1.5 z-20 w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${
-          collected
+        className={`absolute top-1.5 left-1.5 z-20 w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${collected
             ? 'bg-cyan-400 border-cyan-400'
             : 'bg-black/40 border-zinc-400'
-        }`}
+          }`}
       >
         {collected && (
           <svg
