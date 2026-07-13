@@ -28,6 +28,7 @@ const RARITY_CLASSES: Record<Rarity, string> = {
   EPIC: 'text-purple-500 bg-purple-500/10 border-purple-500/30',
   LEGENDARY: 'text-amber-400 bg-amber-400/10 border-amber-400/30',
   MYTHIC: 'text-red-500 bg-red-500/10 border-red-500/30',
+  ICONIC: 'text-[#ebdaa4] bg-[#ebdaa4]/10 border-[#ebdaa4]/30',
 };
 
 const TIER_TEXT: Record<Tier, string> = {
@@ -45,6 +46,7 @@ const RARITY_VALUE: Record<Rarity, number> = {
   EPIC: 3,
   LEGENDARY: 4,
   MYTHIC: 5,
+  ICONIC: 6,
 };
 
 const TIER_VALUE: Record<Tier, number> = {
@@ -202,6 +204,7 @@ export function DroidPickerModal({
                 <option value="EPIC">Epic</option>
                 <option value="LEGENDARY">Legendary</option>
                 <option value="MYTHIC">Mythic</option>
+                <option value="ICONIC">Iconic</option>
               </select>
 
               <select

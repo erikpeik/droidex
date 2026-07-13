@@ -21,7 +21,7 @@ Copy `.env.example` to `.env` and fill in the Firebase project values. All vars 
 
 **Stack:** React 18 + TypeScript, Vite, Tailwind CSS v3, Firebase (Auth + Firestore), React Router v7.
 
-**Data layer** ([src/data/](src/data/)) is pure static TypeScript — no fetching. `droids.ts` defines every droid with its rarity, class (type), and which tiers it appears in, plus derives `ALL_CARDS` (the flat list of `DroidCard` objects where `id = "${name}_${tier}"`). `rebirths.ts` defines the 20-level rebirth progression, each level listing required `DroidCard` ids and a credit cost.
+**Data layer** ([src/data/](src/data/)) is pure static TypeScript — no fetching. `droids.ts` defines every droid with its rarity, class (type), and which tiers it appears in, plus derives `ALL_CARDS` (the flat list of `DroidCard` objects where `id = "${name}_${tier}"`). `rebirths.ts` defines the 27-level rebirth progression, each level listing required `DroidCard` ids and a credit cost.
 
 **State management** lives entirely in [src/App.tsx](src/App.tsx): filter state (tier, rarity, class, collection status, search) and the user's collection/rebirth progress. There is no global store.
 

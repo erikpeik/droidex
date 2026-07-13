@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { REBIRTH_LEVELS } from '../data/rebirths';
+import { REBIRTH_LEVELS, MAX_REBIRTH } from '../data/rebirths';
 import { getSquadUnlockDescription } from '../data/squads';
 
 interface Props {
@@ -71,14 +71,14 @@ export function RebirthsPage({ rebirthLevel, collected, onSetRebirth }: Props) {
           <span className="text-orange-400 font-black text-xl leading-none w-8 text-center">
             {rebirthLevel}
           </span>
-          {rebirthLevel >= 23 && (
+          {rebirthLevel >= MAX_REBIRTH && (
             <span className="text-yellow-400 text-xs font-bold">MAX</span>
           )}
         </div>
         <button
           type="button"
-          onClick={() => onSetRebirth(Math.min(23, rebirthLevel + 1))}
-          disabled={rebirthLevel >= 23}
+          onClick={() => onSetRebirth(Math.min(MAX_REBIRTH, rebirthLevel + 1))}
+          disabled={rebirthLevel >= MAX_REBIRTH}
           className="w-8 h-8 rounded-lg bg-zinc-800 text-zinc-300 hover:bg-zinc-700 disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center text-base font-bold transition-colors"
         >
           →
@@ -221,7 +221,7 @@ export function RebirthsPage({ rebirthLevel, collected, onSetRebirth }: Props) {
           );
         })}
 
-        {rebirthLevel >= 23 && (
+        {rebirthLevel >= MAX_REBIRTH && (
           <div className="text-center py-6 text-yellow-400 font-bold text-sm">
             Maximum rebirth level reached!
           </div>

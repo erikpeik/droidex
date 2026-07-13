@@ -242,4 +242,46 @@ export const REBIRTH_LEVELS: RebirthLevel[] = [
       req('BESKAR', 'R7'),
     ],
   },
+  {
+    from: 23,
+    to: 24,
+    credits: '9.00T',
+    droids: [
+      req('BESKAR', 'BB9'),
+      req('BESKAR', 'CYCLO-GRAV'),
+      req('DEFAULT', 'MO-TRAK'),
+    ],
+  },
+  {
+    from: 24,
+    to: 25,
+    credits: '13.50T',
+    droids: [
+      req('BESKAR', 'B2-RP'),
+      req('DEFAULT', 'IG'),
+      req('GOLD', 'DRFT-R'),
+    ],
+  },
+  {
+    from: 25,
+    to: 26,
+    credits: '21.00T',
+    droids: [
+      req('GOLD', 'CYCLENS'),
+      req('DIAMOND', 'LOADLIFTER'),
+      req('RAINBOW', 'RIC-1200'),
+    ],
+  },
+  {
+    from: 26,
+    to: 27,
+    credits: '32.00T',
+    droids: [
+      req('DIAMOND', 'KX'),
+      req('RAINBOW', 'TRI-TEK'),
+      req('BESKAR', 'SNOW MOUSE'),
+    ],
+  },
 ];
+
+export const MAX_REBIRTH = REBIRTH_LEVELS[REBIRTH_LEVELS.length - 1].to;
