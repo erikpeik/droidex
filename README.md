@@ -6,10 +6,10 @@ A web-based tracker for the **Fortnite Star Wars Droid Tycoon** game mode. Track
 
 ## Features
 
-- **Droid grid** — all 258 known droids across DEFAULT / GOLD / DIAMOND / RAINBOW / BESKAR tiers
+- **Droid grid** — all 317 known droids across DEFAULT / GOLD / DIAMOND / RAINBOW / BESKAR tiers
 - **Search & filters** — search by name; filter by rarity, class (WORKER / ASTROMECH / BATTLE), and collection status
 - **Click to collect** — toggle droids as collected; cyan glow marks what you own
-- **Rebirth tracker** — shows credit cost and required droids for each rebirth level (0→20); highlights missing droids in the grid
+- **Rebirth tracker** — shows credit cost and required droids for each rebirth level (0→27); highlights missing droids in the grid
 - **Google sign-in** — sync your collection to Firestore across devices; guest progress migrates automatically on sign-in
 - **Persistent state** — guest progress saves to localStorage; signed-in progress syncs via Firestore in real time
 

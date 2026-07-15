@@ -1,4 +1,10 @@
-export type Rarity = 'COMMON' | 'RARE' | 'EPIC' | 'LEGENDARY' | 'MYTHIC';
+export type Rarity =
+  | 'COMMON'
+  | 'RARE'
+  | 'EPIC'
+  | 'LEGENDARY'
+  | 'MYTHIC'
+  | 'ICONIC';
 export type DroidType = 'WORKER' | 'ASTROMECH' | 'BATTLE';
 export type Tier = 'DEFAULT' | 'GOLD' | 'DIAMOND' | 'RAINBOW' | 'BESKAR';
 export type TierOrAll = Tier | 'ALL';
@@ -105,25 +111,66 @@ export const DROIDS: Droid[] = [
     tiers: ALL_TIERS,
   },
 
-  // MYTHIC (event locked, DEFAULT only)
+  // MYTHIC
+  { name: 'SNOW MOUSE', rarity: 'MYTHIC', type: 'WORKER', tiers: ALL_TIERS },
+  { name: 'RIC', rarity: 'MYTHIC', type: 'WORKER', tiers: ALL_TIERS },
+  { name: 'LOADLIFTER', rarity: 'MYTHIC', type: 'WORKER', tiers: ALL_TIERS },
+  { name: 'LEP', rarity: 'MYTHIC', type: 'WORKER', tiers: ALL_TIERS },
+  { name: 'RIC-1200', rarity: 'MYTHIC', type: 'WORKER', tiers: ALL_TIERS },
+  { name: 'DRFT-R', rarity: 'MYTHIC', type: 'ASTROMECH', tiers: ALL_TIERS },
+  { name: 'CYCLENS', rarity: 'MYTHIC', type: 'ASTROMECH', tiers: ALL_TIERS },
+  { name: 'MO-TRAK', rarity: 'MYTHIC', type: 'ASTROMECH', tiers: ALL_TIERS },
+  { name: 'TRI-TEK', rarity: 'MYTHIC', type: 'ASTROMECH', tiers: ALL_TIERS },
+  { name: 'IG', rarity: 'MYTHIC', type: 'BATTLE', tiers: ALL_TIERS },
+  { name: 'KX', rarity: 'MYTHIC', type: 'BATTLE', tiers: ALL_TIERS },
+
+  // ICONIC (event locked, DEFAULT only)
   {
     name: 'BB8',
-    rarity: 'MYTHIC',
+    rarity: 'ICONIC',
     type: 'ASTROMECH',
     tiers: DEFAULT_ONLY,
     eventLocked: true,
   },
   {
     name: 'MISTER BONES',
-    rarity: 'MYTHIC',
+    rarity: 'ICONIC',
     type: 'BATTLE',
     tiers: DEFAULT_ONLY,
     eventLocked: true,
   },
   {
     name: 'IG-11 MARSHAL',
-    rarity: 'MYTHIC',
+    rarity: 'ICONIC',
     type: 'BATTLE',
+    tiers: DEFAULT_ONLY,
+    eventLocked: true,
+  },
+  {
+    name: 'DJ-R3X',
+    rarity: 'ICONIC',
+    type: 'WORKER',
+    tiers: DEFAULT_ONLY,
+    eventLocked: true,
+  },
+  {
+    name: 'CB-23',
+    rarity: 'ICONIC',
+    type: 'ASTROMECH',
+    tiers: DEFAULT_ONLY,
+    eventLocked: true,
+  },
+  {
+    name: 'R2-D2',
+    rarity: 'ICONIC',
+    type: 'ASTROMECH',
+    tiers: DEFAULT_ONLY,
+    eventLocked: true,
+  },
+  {
+    name: 'C-3P0',
+    rarity: 'ICONIC',
+    type: 'WORKER',
     tiers: DEFAULT_ONLY,
     eventLocked: true,
   },
@@ -137,7 +184,7 @@ export const ALL_CARDS: DroidCard[] = DROIDS.flatMap((droid) =>
   })),
 );
 
-export const TOTAL_DROIDS = 258;
+export const TOTAL_DROIDS = 317;
 
 export const RARITY_ORDER: Rarity[] = [
   'COMMON',
@@ -145,6 +192,7 @@ export const RARITY_ORDER: Rarity[] = [
   'EPIC',
   'LEGENDARY',
   'MYTHIC',
+  'ICONIC',
 ];
 export const TIER_ORDER: Tier[] = [
   'DEFAULT',

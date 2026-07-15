@@ -14,6 +14,7 @@ const OPTIONS: { value: RarityOrAll; label: string; color: string }[] = [
   { value: 'EPIC', label: 'EPIC', color: '#a855f7' },
   { value: 'LEGENDARY', label: 'LEGENDARY', color: '#f59e0b' },
   { value: 'MYTHIC', label: 'MYTHIC', color: '#ef4444' },
+  { value: 'ICONIC', label: 'ICONIC', color: '#ebdaa4' },
 ];
 
 export function RarityFilter({ active, onChange }: Props) {

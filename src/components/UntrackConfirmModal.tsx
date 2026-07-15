@@ -27,6 +27,7 @@ const RARITY_CLASS: Record<string, string> = {
   EPIC: 'text-purple-500 bg-purple-500/15 border border-purple-500/40',
   LEGENDARY: 'text-amber-400 bg-amber-400/15 border border-amber-400/40',
   MYTHIC: 'text-red-500 bg-red-500/15 border border-red-500/40',
+  ICONIC: 'text-[#ebdaa4] bg-[#ebdaa4]/15 border border-[#ebdaa4]/40',
 };
 
 const TIER_TEXT: Record<string, string> = {
